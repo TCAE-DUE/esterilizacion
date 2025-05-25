@@ -1,47 +1,174 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Mi sitio</title>
-    <style>
-      body {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        margin: 0;
-        background-color: #f9f9f9;
-        font-family: Arial, sans-serif;
-        text-align: center;
-      }
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Central de Esterilización HUGCDN</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #111;
+    }
+    header, footer {
+      background-color: #f8f8f8;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    nav a, .button {
+      margin-left: 1rem;
+      text-decoration: none;
+      color: black;
+      font-weight: bold;
+    }
+    .hero {
+      padding: 3rem 2rem;
+    }
+    .hero h1 {
+      font-size: 2.5rem;
+    }
+    .hero p {
+      margin-top: 0.5rem;
+      color: #555;
+    }
+    .image-full {
+      width: 50%;
+      max-height: 400px;
+      object-fit: cover;
+    }
+    section {
+      padding: 2rem;
+    }
+    .grid {
+      display: grid;
+      gap: 1.5rem;
+    }
+    .grid-2 { grid-template-columns: 1fr 1fr; }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-4 { grid-template-columns: repeat(4, 1fr); }
 
-      h1 {
-        font-size: 3em;
-        color: #222;
-        margin-bottom: 40px;
-        max-width: 90%;
-      }
+    .card {
+      background-color: #fff;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
 
-      a.boton {
-        display: inline-block;
-        padding: 15px 30px;
-        font-size: 1.5em;
-        color: white;
-        background-color: #007bff;
-        border: none;
-        border-radius: 8px;
-        text-decoration: none;
-        transition: background-color 0.3s;
-      }
+    .buttons {
+      margin-top: 1rem;
+    }
 
-      a.boton:hover {
-        background-color: #0056b3;
-      }
-    </style>
-  </head>
-  <body>
-    <h1>Aquí podemos poner lo que quieras y acceden mediante un QR</h1>
-    <a href="pagina_2.html" class="boton">Ir a otra página</a>
-  </body>
+    .button, .secondary-button {
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .button {
+      background-color: black;
+      color: white;
+    }
+
+    .secondary-button {
+      background-color: #ddd;
+    }
+
+    footer {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    footer nav {
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+
+    footer nav a {
+      margin: 0.5rem 1rem 0 0;
+      color: #555;
+    }
+
+    .social-icons {
+      margin-top: 1rem;
+    }
+
+    .social-icons img {
+      width: 24px;
+      margin-right: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div><strong>CENTRAL DE ESTERILIZACION HUGCDN.</strong></div>
+    <nav>
+      <a href="#">Page</a>
+      <a href="#">Page</a>
+      <a href="#">Page</a>
+      <a class="button" href="#">Button</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Bienvenido a <br><strong>ESTERILIZACION</strong></h1>
+    <p>Empezaremos con un plano de la central. Prestar atención a los puestos de trabajo.</p>
+  </section>
+
+  <img src="img/plano.png" class="image-full" alt="Imagen principal">
+
+  <section>
+    <h2>METODO DE TRABAJO</h2>
+    <p>En esta central se usa un método de trabajo basado en..........</p>
+  </section>
+
+  <section class="grid grid-2">
+    <div>
+      <h3>Sección de COLORES / QUIRÓFANO</h3>
+      <p><strong>Subheading</strong></p>
+      <p>Texto descriptivo para ampliar información.</p>
+      <p><strong>Subheading</strong></p>
+      <p>Detalles, explicaciones o contexto.</p>
+      <div class="buttons">
+        <button class="button">Button</button>
+        <button class="secondary-button">Secondary button</button>
+      </div>
+    </div>
+    <img src="https://via.placeholder.com/600x400" alt="Imagen sección">
+  </section>
+
+
+
+
+
+  <section>
+    <h2>Section heading</h2>
+    <div class="buttons">
+      <button class="button">Button</button>
+      <button class="secondary-button">Secondary button</button>
+    </div>
+  </section>
+
+  <footer>
+    <div><strong>Site name</strong></div>
+    <div class="social-icons">
+      <!-- Iconos de redes sociales simulados -->
+      <img src="img/plano.png" alt="icono">
+      <img src="https://via.placeholder.com/24" alt="icono">
+      <img src="https://via.placeholder.com/24" alt="icono">
+    </div>
+    <nav>
+      <a href="#">Page</a>
+      <a href="#">Page</a>
+      <a href="#">Page</a>
+      <a href="#">Page</a>
+    </nav>
+  </footer>
+
+</body>
 </html>
