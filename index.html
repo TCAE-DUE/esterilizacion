@@ -6,6 +6,7 @@
     <style>
       body {
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
         height: 100vh;
@@ -16,15 +17,31 @@
       }
 
       h1 {
-        font-size: 3em; /* 3 veces más grande que el tamaño base (~1em) */
+        font-size: 3em;
         color: #222;
-        padding: 20px;
+        margin-bottom: 40px;
         max-width: 90%;
+      }
+
+      a.boton {
+        display: inline-block;
+        padding: 15px 30px;
+        font-size: 1.5em;
+        color: white;
+        background-color: #007bff;
+        border: none;
+        border-radius: 8px;
+        text-decoration: none;
+        transition: background-color 0.3s;
+      }
+
+      a.boton:hover {
+        background-color: #0056b3;
       }
     </style>
   </head>
   <body>
     <h1>Aquí podemos poner lo que quieras y acceden mediante un QR</h1>
+    <a href="pagina_2.html" class="boton">Ir a otra página</a>
   </body>
 </html>
-
