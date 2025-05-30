@@ -1,174 +1,82 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Central de Esterilización HUGCDN</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Landing Page</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <!-- Bootstrap CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Estilos personalizados -->
   <style>
     body {
-      font-family: sans-serif;
-      margin: 0;
-      padding: 0;
-      color: #111;
-    }
-    header, footer {
-      background-color: #f8f8f8;
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    nav a, .button {
-      margin-left: 1rem;
-      text-decoration: none;
-      color: black;
-      font-weight: bold;
+      font-family: 'Roboto', sans-serif;
     }
     .hero {
-      padding: 3rem 2rem;
+      background: linear-gradient(to right, #007bff, #0056b3);
+      color: white;
+      padding: 100px 20px;
+      text-align: center;
     }
     .hero h1 {
-      font-size: 2.5rem;
+      font-size: 3rem;
+      font-weight: 700;
     }
     .hero p {
-      margin-top: 0.5rem;
-      color: #555;
+      font-size: 1.25rem;
     }
-    .image-full {
-      width: 50%;
-      max-height: 400px;
-      object-fit: cover;
+    .features {
+      padding: 60px 20px;
     }
-    section {
-      padding: 2rem;
-    }
-    .grid {
-      display: grid;
-      gap: 1.5rem;
-    }
-    .grid-2 { grid-template-columns: 1fr 1fr; }
-    .grid-3 { grid-template-columns: repeat(3, 1fr); }
-    .grid-4 { grid-template-columns: repeat(4, 1fr); }
-
-    .card {
-      background-color: #fff;
-      padding: 1rem;
-      border-radius: 8px;
-      box-shadow: 0 0 5px rgba(0,0,0,0.1);
-    }
-
-    .buttons {
-      margin-top: 1rem;
-    }
-
-    .button, .secondary-button {
-      padding: 0.5rem 1rem;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-
-    .button {
-      background-color: black;
-      color: white;
-    }
-
-    .secondary-button {
-      background-color: #ddd;
-    }
-
-    footer {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-
-    footer nav {
-      display: flex;
-      flex-wrap: wrap;
-      margin-top: 1rem;
-    }
-
-    footer nav a {
-      margin: 0.5rem 1rem 0 0;
-      color: #555;
-    }
-
-    .social-icons {
-      margin-top: 1rem;
-    }
-
-    .social-icons img {
-      width: 24px;
-      margin-right: 0.5rem;
+    .footer {
+      background-color: #f8f9fa;
+      padding: 30px 20px;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #6c757d;
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <div><strong>CENTRAL DE ESTERILIZACION HUGCDN.</strong></div>
-    <nav>
-      <a href="#">Page</a>
-      <a href="#">Page</a>
-      <a href="#">Page</a>
-      <a class="button" href="#">Button</a>
-    </nav>
-  </header>
-
+  <!-- Sección principal -->
   <section class="hero">
-    <h1>Bienvenido a <br><strong>ESTERILIZACION</strong></h1>
-    <p>Empezaremos con un plano de la central. Prestar atención a los puestos de trabajo.</p>
+    <div class="container">
+      <h1>Bienvenido a Nuestra Página</h1>
+      <p>Una solución moderna, clara y efectiva para tu proyecto</p>
+      <a href="#" class="btn btn-light btn-lg mt-4">Comenzar</a>
+    </div>
   </section>
 
-  <img src="img/plano.png" class="image-full" alt="Imagen principal">
-
-  <section>
-    <h2>METODO DE TRABAJO</h2>
-    <p>En esta central se usa un método de trabajo basado en..........</p>
-  </section>
-
-  <section class="grid grid-2">
-    <div>
-      <h3>Sección de COLORES / QUIRÓFANO</h3>
-      <p><strong>Subheading</strong></p>
-      <p>Texto descriptivo para ampliar información.</p>
-      <p><strong>Subheading</strong></p>
-      <p>Detalles, explicaciones o contexto.</p>
-      <div class="buttons">
-        <button class="button">Button</button>
-        <button class="secondary-button">Secondary button</button>
+  <!-- Sección de características -->
+  <section class="features text-center">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 mb-4">
+          <h3>Fácil de usar</h3>
+          <p>Diseñado para ser intuitivo y accesible desde cualquier dispositivo.</p>
+        </div>
+        <div class="col-md-4 mb-4">
+          <h3>Seguro</h3>
+          <p>Protegido con los más altos estándares de seguridad digital.</p>
+        </div>
+        <div class="col-md-4 mb-4">
+          <h3>Personalizable</h3>
+          <p>Adáptalo a tus necesidades en solo unos minutos.</p>
+        </div>
       </div>
     </div>
-    <img src="https://via.placeholder.com/600x400" alt="Imagen sección">
   </section>
 
-
-
-
-
-  <section>
-    <h2>Section heading</h2>
-    <div class="buttons">
-      <button class="button">Button</button>
-      <button class="secondary-button">Secondary button</button>
+  <!-- Pie de página -->
+  <footer class="footer">
+    <div class="container">
+      &copy; 2025 TuEmpresa. Todos los derechos reservados.
     </div>
-  </section>
-
-  <footer>
-    <div><strong>Site name</strong></div>
-    <div class="social-icons">
-      <!-- Iconos de redes sociales simulados -->
-      <img src="img/plano.png" alt="icono">
-      <img src="https://via.placeholder.com/24" alt="icono">
-      <img src="https://via.placeholder.com/24" alt="icono">
-    </div>
-    <nav>
-      <a href="#">Page</a>
-      <a href="#">Page</a>
-      <a href="#">Page</a>
-      <a href="#">Page</a>
-    </nav>
   </footer>
 
+  <!-- Bootstrap JS (opcional, para componentes interactivos) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
