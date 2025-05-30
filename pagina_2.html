@@ -1,253 +1,723 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Página de inicio del Hospital Dr. Negrin, dedicada a la Unidad Central de Esterilización.">
-  <title>INICIO</title>
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-
+  <title>Clínica Salud Total</title>
   <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Remixicon -->
-  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
-
-  <!-- Bootstrap Icons (para los íconos dropdown) -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-
-  <!-- Tu estilo personalizado (si fuera necesario, puedes incrustarlo también aquí si ya no quieres assets/css/style.css) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Iconos Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <!-- Estilos personalizados -->
   <style>
+    :root {
+      --primary-color: #3fbbc0;
+      --secondary-color: #65c9cd;
+      --dark-color: #555555;
+      --light-color: #f7f7f7;
+    }
+    
     body {
+      font-family: 'Open Sans', sans-serif;
+      color: var(--dark-color);
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
       font-family: 'Roboto', sans-serif;
+      font-weight: 600;
     }
-
-    #header {
-      background: #fff;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    
+    /* Barra superior */
+    .top-bar {
+      background-color: var(--primary-color);
+      color: white;
       padding: 10px 0;
-    }
-
-    .logo a {
-      font-size: 28px;
-      font-weight: bold;
-      color: #000;
-      text-decoration: none;
-    }
-
-    .logo span {
-      color: #007bff;
-    }
-
-    .icon-box {
-      text-align: center;
-      padding: 20px;
-      border: 1px solid #eee;
-      border-radius: 8px;
-      transition: all 0.3s ease-in-out;
-    }
-
-    .icon-box:hover {
-      background: #f4f4f4;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-    }
-
-    .icon-box i {
-      font-size: 2rem;
-      margin-bottom: 10px;
-    }
-
-    footer {
-      background: #f8f9fa;
-      padding: 40px 0 20px 0;
       font-size: 14px;
     }
-
-    .footer-info h3 {
-      font-size: 18px;
+    
+    .top-bar a {
+      color: white;
+      text-decoration: none;
+      margin-right: 15px;
+    }
+    
+    .top-bar i {
+      margin-right: 5px;
+    }
+    
+    .social-links a {
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      text-align: center;
+      line-height: 30px;
+      margin-left: 8px;
+    }
+    
+    /* Header */
+    .header {
+      background-color: white;
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+      padding: 15px 0;
+    }
+    
+    .logo {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--dark-color);
+    }
+    
+    .logo span {
+      color: var(--primary-color);
+    }
+    
+    .navbar a {
+      color: var(--dark-color);
+      font-weight: 500;
+      padding: 10px 15px;
+    }
+    
+    .navbar a:hover {
+      color: var(--primary-color);
+    }
+    
+    .btn-appointment {
+      background-color: var(--primary-color);
+      color: white;
+      border-radius: 50px;
+      padding: 8px 20px;
+      font-weight: 500;
+    }
+    
+    .btn-appointment:hover {
+      background-color: var(--secondary-color);
+      color: white;
+    }
+    
+    /* Hero Section */
+    .hero {
+      background-color: var(--light-color);
+      padding: 100px 0;
+      background-image: url('https://bootstrapmade.com/demo/templates/Medicio/assets/img/hero-bg.jpg');
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+    
+    .hero:before {
+      content: "";
+      background-color: rgba(63, 187, 192, 0.8);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+    
+    .hero h1 {
+      font-size: 48px;
+      font-weight: 700;
+      color: white;
       margin-bottom: 20px;
     }
-
-    .footer-links h4 {
-      font-weight: bold;
-      font-size: 16px;
+    
+    .hero p {
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 30px;
+      font-size: 18px;
     }
-
-    .footer-links ul {
-      padding-left: 0;
-      list-style: none;
+    
+    .hero .btn-get-started {
+      background-color: white;
+      color: var(--primary-color);
+      border-radius: 50px;
+      padding: 10px 30px;
+      font-weight: 600;
     }
-
-    .footer-links ul li {
-      margin-bottom: 10px;
+    
+    /* Features Section */
+    .features {
+      padding: 60px 0;
     }
-
-    .footer-links ul li i {
-      margin-right: 6px;
-    }
-
-    #hero {
-      background: #e9f0f5;
-      padding: 100px 0;
+    
+    .feature-box {
       text-align: center;
+      padding: 30px 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.08);
+      margin-bottom: 30px;
+    }
+    
+    .feature-box i {
+      font-size: 36px;
+      color: var(--primary-color);
+      margin-bottom: 20px;
+    }
+    
+    .feature-box h3 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+    
+    /* About Section */
+    .about {
+      padding: 60px 0;
+      background-color: var(--light-color);
+    }
+    
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+    
+    .section-title h2 {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--dark-color);
+      margin-bottom: 15px;
+    }
+    
+    .section-title p {
+      color: #777;
+    }
+    
+    /* Services Section */
+    .services {
+      padding: 60px 0;
+    }
+    
+    .service-item {
+      border: 1px solid #eee;
+      padding: 30px;
+      margin-bottom: 30px;
+      border-radius: 5px;
+      transition: all 0.3s;
+    }
+    
+    .service-item:hover {
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.08);
+      transform: translateY(-5px);
+    }
+    
+    .service-item i {
+      font-size: 36px;
+      color: var(--primary-color);
+      margin-bottom: 20px;
+    }
+    
+    .service-item h3 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+    
+    /* Appointment Section */
+    .appointment {
+      padding: 60px 0;
+      background-color: var(--light-color);
+    }
+    
+    .appointment .form-group {
+      margin-bottom: 20px;
+    }
+    
+    /* Doctors Section */
+    .doctors {
+      padding: 60px 0;
+    }
+    
+    .doctor-card {
+      border: 1px solid #eee;
+      border-radius: 5px;
+      overflow: hidden;
+      margin-bottom: 30px;
+    }
+    
+    .doctor-img {
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .doctor-img img {
+      width: 100%;
+      transition: transform 0.5s;
+    }
+    
+    .doctor-card:hover .doctor-img img {
+      transform: scale(1.1);
+    }
+    
+    .doctor-info {
+      padding: 20px;
+      text-align: center;
+    }
+    
+    .doctor-info h3 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+    
+    .doctor-info span {
+      color: var(--primary-color);
+      font-size: 14px;
+      display: block;
+      margin-bottom: 15px;
+    }
+    
+    /* Footer */
+    .footer {
+      background-color: #2f2f2f;
+      color: white;
+      padding: 60px 0 30px;
+    }
+    
+    .footer h3 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      position: relative;
+    }
+    
+    .footer h3:after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -10px;
+      width: 50px;
+      height: 2px;
+      background-color: var(--primary-color);
+    }
+    
+    .footer-links ul {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .footer-links li {
+      padding: 5px 0;
+    }
+    
+    .footer-links a {
+      color: #aaa;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    
+    .footer-links a:hover {
+      color: white;
+      padding-left: 5px;
+    }
+    
+    .footer-contact p {
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+    }
+    
+    .footer-contact i {
+      margin-right: 10px;
+      color: var(--primary-color);
+    }
+    
+    .footer-newsletter input {
+      border: 0;
+      padding: 10px;
+      width: 70%;
+      border-radius: 5px 0 0 5px;
+    }
+    
+    .footer-newsletter button {
+      background-color: var(--primary-color);
+      color: white;
+      border: 0;
+      padding: 10px 15px;
+      border-radius: 0 5px 5px 0;
+    }
+    
+    .copyright {
+      text-align: center;
+      padding-top: 30px;
+      margin-top: 30px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
     }
   </style>
 </head>
-
 <body>
-
-  <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top">
-    <div class="container d-flex align-items-center justify-content-lg-between">
-      <h1 class="logo me-auto me-lg-0"><a href="#">HOSPITAL <span>DR. NEGRIN</span></a></h1>
-      <img src="img/LOGO4.png" alt="Logo del Hospital Dr. Negrin" width="160" height="60">
-
-      <nav id="navbar" class="navbar order-last order-lg-0">
-        <ul class="navbar-nav d-flex flex-row gap-3">
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">MAQUINAS</a>
-            <ul class="dropdown-menu">
-              <li class="dropdown-submenu dropend">
-                <a class="dropdown-item dropdown-toggle" href="#">ZONA SUCIA</a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="Maquina/Lavadora_1/Lavadora_1.html">LAVADORAS STEELCO 1-2-3</a></li>
-                  <li><a class="dropdown-item" href="Maquina/Lavadora_4/Lavadora_4.html">LAVADORA 4</a></li>
-                  <li class="dropdown-submenu dropend">
-                    <a class="dropdown-item dropdown-toggle" href="#">SECADORAS</a>
-                    <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="Maquina/Secadora_1/Secadora_1.html">SECADORA 1</a></li>
-                      <li><a class="dropdown-item" href="Maquina/Secadora_2/Secadora_2.html">SECADORA 2</a></li>
-                    </ul>
-                  </li>
-                  <li class="dropdown-submenu dropend">
-                    <a class="dropdown-item dropdown-toggle" href="#">ULTRASONIDOS</a>
-                    <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="Maquina/Ultrasonidos_1/Ultrasonidos_1.html">ULTRASONIDOS 1</a></li>
-                      <li><a class="dropdown-item" href="Maquina/Ultrasonidos_2/Ultrasonido_2.html">ULTRASONIDOS 2</a></li>
-                    </ul>
-                  </li>
-                  <li><a class="dropdown-item" href="Maquina/Tren_Carros/Tren_Carros.html">TREN DE CARROS</a></li>
-                </ul>
-              </li>
-              <li class="dropdown-submenu dropend">
-                <a class="dropdown-item dropdown-toggle" href="#">ZONA ESTERIL</a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="Maquina/Autoclave_1/Autoclave_1.html">AUTOCLAVE 1</a></li>
-                  <li><a class="dropdown-item" href="Maquina/Autoclave_2/Autoclave_2.html">AUTOCLAVE 2</a></li>
-                  <li><a class="dropdown-item" href="Maquina/Autoclave_3/Autoclave_3.html">AUTOCLAVE 3</a></li>
-                  <li><a class="dropdown-item" href="Maquina/Autoclave_4/Autoclave_4.html">AUTOCLAVE 4</a></li>
-                  <li><a class="dropdown-item" href="Maquina/V-PRO/V-pro.html">V-PRO</a></li>
-                  <li><a class="dropdown-item" href="Maquina/PLASMA/Plasma.html">PLASMA</a></li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-
-          <li class="nav-item"><a class="nav-link" href="Tcae/WallBook/WALLBOOK_index.html">MURO</a></li>
-
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">TUTORIALES</a>
-            <ul class="dropdown-menu">
-              <li class="dropdown-submenu dropend">
-                <a class="dropdown-item dropdown-toggle" href="#">EMBOLSADO</a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="tutorial/index_tuto.html">ZONA CENTRO</a></li>
-                  <li><a class="dropdown-item" href="#">ZONA ESTERIL</a></li>
-                </ul>
-              </li>
-              <li class="dropdown-submenu dropend">
-                <a class="dropdown-item dropdown-toggle" href="#">ZONA ESTERIL</a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Z. AUTOCLAVES</a></li>
-                  <li><a class="dropdown-item" href="#">Z. ESTERIL</a></li>
-                  <li><a class="dropdown-item" href="#">Z. COLOCACION</a></li>
-                  <li><a class="dropdown-item" href="#">Z. PUERTA</a></li>
-                  <li><a class="dropdown-item" href="#">Z. MONTACARGAS</a></li>
-                  <li><a class="dropdown-item" href="#">Z. SUCIA</a></li>
-                </ul>
-              </li>
-              <li><a class="dropdown-item" href="tutorial/Marvax/index_Marvax.html">MARVAX</a></li>
-            </ul>
-          </li>
-
-          <li class="nav-item"><a class="nav-link" href="WALLBOOK/Funciones/funciones.html">FUNCIONES TCAE/DUE</a></li>
-          <li class="nav-item"><a class="nav-link" href="Tcae/Nosotros/NosotrosIndex.html">Nosotros</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header><!-- End Header -->
-
-  <!-- ======= Hero Section ======= -->
-  <section id="hero" class="d-flex align-items-center justify-content-center">
-    <div class="container">
-      <div class="row align-items-center my-5">
-        <div class="col-xl-6 col-lg-8 text-center">
-          <h1>Unidad Central de Esterilización<span>.</span></h1>
-          <h2>Comprometidos con la pureza, dedicados a la salud.</h2>
-        </div>
-      </div>
-
-      <div class="row gy-4 mt-5 justify-content-center">
-        <div class="col-xl-2 col-md-4">
-          <a href="Tcae/indexTCAE.html">
-            <div class="icon-box">
-              <i class="ri-nurse-line"></i>
-              <h3>T.C.A.E.</h3>
-            </div>
-          </a>
-        </div>
-        <div class="col-xl-2 col-md-4">
-          <a href="DUE/indexDue.html">
-            <div class="icon-box">
-              <i class="ri-syringe-line"></i>
-              <h3>D.U.E.</h3>
-            </div>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section><!-- End Hero -->
-
-  <!-- ======= Footer ======= -->
-  <footer id="footer">
+  <!-- Barra superior -->
+  <div class="top-bar">
     <div class="container">
       <div class="row">
-        <div class="col-lg-3 col-md-6 footer-info">
-          <h3>DOCTOR NEGRIN<span>.</span></h3>
+        <div class="col-md-6">
+          <a href="#"><i class="fa-solid fa-envelope"></i> centraldeesterilizacionhgcdn@gmail.com</a>
+          <a href="#"><i class="fa-solid fa-phone"></i>928 449250</a>
         </div>
-
-        <div class="col-lg-2 col-md-6 footer-links">
-          <h4>Links del Servicio</h4>
-          <ul>
-            <li><i class="bi bi-chevron-right"></i> <a href="http://intranet/">Intranet</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="http://10.136.26.52/recursoshumanos/gestion_personal.html">Oficina de Personal</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="http://10.136.26.82:8080/hdn/acc.jsp">Tabaiba</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Sicho</a></li>
-          </ul>
-        </div>
-
-        <div class="col-lg-2 col-md-6 footer-links">
-          <ul>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Flor</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Correo Corporativo</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Nominas</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Activar Cuenta DRAGO</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Activar Cuenta INTRANET</a></li>
-          </ul>
+        <div class="col-md-6 text-end">
+          <div class="social-links">
+            <a href="#"><i class="fa-brands fa-youtube"></i></a>
+            <a href="#"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+          </div>
         </div>
       </div>
-      <div class="text-center mt-4">
-        &copy; <strong><span>ISRAEL</span></strong>. All Rights Reserved<br>
-        Designed by <a href="#">ISRAEL</a>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand logo" href="#">
+          <span>Esteril</span>izacion
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link active" href="#">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">MENU 1</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">MENU 2</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">MENU 3</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">MENU 4</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">MENU 4</a>
+            </li>
+          </ul>
+          <a href="#" class="btn btn-appointment ms-lg-3">BOTON RESALTADO</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container position-relative">
+      <div class="row">
+        <div class="col-lg-6">
+          <h1>TITULO DE LO QUE QUIERAS</h1>
+          <p>TEXTO REFERENTE AL TITULO</p>
+          <a href="#" class="btn btn-get-started">REDIRECCION A OTRO LUGARES</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3 col-md-6">
+          <div class="feature-box">
+            <i class="fas fa-heartbeat"></i>
+            <h3>Cardiología</h3>
+            <p>Cuidado especializado para tu corazón con los mejores cardiólogos.</p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="feature-box">
+            <i class="fas fa-brain"></i>
+            <h3>Neurología</h3>
+            <p>Diagnóstico y tratamiento de enfermedades del sistema nervioso.</p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="feature-box">
+            <i class="fas fa-bone"></i>
+            <h3>Ortopedia</h3>
+            <p>Soluciones para problemas musculoesqueléticos y traumatológicos.</p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="feature-box">
+            <i class="fas fa-pills"></i>
+            <h3>Farmacia</h3>
+            <p>Medicamentos de calidad con asesoramiento profesional.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about">
+    <div class="container">
+      <div class="section-title">
+        <h2>Acerca de Nosotros</h2>
+        <p>Salud Total es una clínica médica multidisciplinaria comprometida con la excelencia en el cuidado de la salud de nuestros pacientes.</p>
+      </div>
+      <div class="row">
+        <div class="col-lg-6">
+          <img src="https://bootstrapmade.com/demo/templates/Medicio/assets/img/about.jpg" class="img-fluid" alt="Acerca de nosotros">
+        </div>
+        <div class="col-lg-6 pt-4 pt-lg-0">
+          <h3>Nuestra misión es proporcionar atención médica de alta calidad con compasión y respeto.</h3>
+          <p class="fst-italic">
+            Creemos que cada paciente merece un trato personalizado y un plan de tratamiento individualizado.
+          </p>
+          <ul>
+            <li><i class="fas fa-check-circle text-primary"></i> Equipo médico altamente calificado</li>
+            <li><i class="fas fa-check-circle text-primary"></i> Tecnología médica de última generación</li>
+            <li><i class="fas fa-check-circle text-primary"></i> Ambiente cálido y acogedor</li>
+            <li><i class="fas fa-check-circle text-primary"></i> Atención personalizada 24/7</li>
+          </ul>
+          <p>
+            Fundada en 2005, Salud Total ha crecido para convertirse en un referente de la medicina privada en la región, con más de 50 especialidades médicas y un equipo de más de 200 profesionales.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="services">
+    <div class="container">
+      <div class="section-title">
+        <h2>Nuestros Servicios</h2>
+        <p>Ofrecemos una amplia gama de servicios médicos para cubrir todas las necesidades de salud de nuestros pacientes.</p>
+      </div>
+      <div class="row">
+        <div class="col-lg-4 col-md-6">
+          <div class="service-item">
+            <i class="fas fa-heartbeat"></i>
+            <h3>Cardiología</h3>
+            <p>Exámenes cardiológicos completos, ecocardiogramas, pruebas de esfuerzo y más.</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="service-item">
+            <i class="fas fa-brain"></i>
+            <h3>Neurología</h3>
+            <p>Evaluación y tratamiento de trastornos neurológicos, EEG, EMG y otros estudios.</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="service-item">
+            <i class="fas fa-tooth"></i>
+            <h3>Odontología</h3>
+            <p>Desde limpiezas rutinarias hasta implantes dentales y ortodoncia.</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="service-item">
+            <i class="fas fa-eye"></i>
+            <h3>Oftalmología</h3>
+            <p>Exámenes de la vista, cirugía láser, tratamiento de cataratas y más.</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="service-item">
+            <i class="fas fa-x-ray"></i>
+            <h3>Radiología</h3>
+            <p>Rayos X, tomografías, resonancias magnéticas y otros estudios de imagen.</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="service-item">
+            <i class="fas fa-procedures"></i>
+            <h3>Cirugía</h3>
+            <p>Procedimientos quirúrgicos ambulatorios y hospitalarios en diversas especialidades.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Appointment Section -->
+  <section class="appointment">
+    <div class="container">
+      <div class="section-title">
+        <h2>Solicitar Cita</h2>
+        <p>Programa una cita con nuestros especialistas. Nuestro equipo se pondrá en contacto contigo para confirmar la disponibilidad.</p>
+      </div>
+      <div class="row">
+        <div class="col-lg-6">
+          <form>
+            <div class="row">
+              <div class="col-md-6 form-group">
+                <input type="text" class="form-control" placeholder="Nombre">
+              </div>
+              <div class="col-md-6 form-group">
+                <input type="email" class="form-control" placeholder="Correo electrónico">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 form-group">
+                <input type="tel" class="form-control" placeholder="Teléfono">
+              </div>
+              <div class="col-md-6 form-group">
+                <input type="date" class="form-control">
+              </div>
+            </div>
+            <div class="form-group">
+              <select class="form-control">
+                <option value="">Seleccione especialidad</option>
+                <option value="Cardiología">Cardiología</option>
+                <option value="Neurología">Neurología</option>
+                <option value="Ortopedia">Ortopedia</option>
+                <option value="Pediatría">Pediatría</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <textarea class="form-control" rows="5" placeholder="Mensaje (Opcional)"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Solicitar Cita</button>
+          </form>
+        </div>
+        <div class="col-lg-6">
+          <img src="https://bootstrapmade.com/demo/templates/Medicio/assets/img/appointment-img.jpg" class="img-fluid" alt="Solicitar cita">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Doctors Section -->
+  <section class="doctors">
+    <div class="container">
+      <div class="section-title">
+        <h2>Nuestros Doctores</h2>
+        <p>Conoce a nuestro equipo de profesionales altamente calificados y comprometidos con tu salud.</p>
+      </div>
+      <div class="row">
+        <div class="col-lg-3 col-md-6">
+          <div class="doctor-card">
+            <div class="doctor-img">
+              <img src="https://bootstrapmade.com/demo/templates/Medicio/assets/img/doctors/doctors-1.jpg" alt="Doctor 1">
+            </div>
+            <div class="doctor-info">
+              <h3>Dr. Carlos Méndez</h3>
+              <span>Cardiólogo</span>
+              <div class="social">
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="doctor-card">
+            <div class="doctor-img">
+              <img src="https://bootstrapmade.com/demo/templates/Medicio/assets/img/doctors/doctors-2.jpg" alt="Doctor 2">
+            </div>
+            <div class="doctor-info">
+              <h3>Dra. Laura Sánchez</h3>
+              <span>Neuróloga</span>
+              <div class="social">
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="doctor-card">
+            <div class="doctor-img">
+              <img src="https://bootstrapmade.com/demo/templates/Medicio/assets/img/doctors/doctors-3.jpg" alt="Doctor 3">
+            </div>
+            <div class="doctor-info">
+              <h3>Dr. Javier Rodríguez</h3>
+              <span>Ortopedista</span>
+              <div class="social">
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="doctor-card">
+            <div class="doctor-img">
+              <img src="https://bootstrapmade.com/demo/templates/Medicio/assets/img/doctors/doctors-4.jpg" alt="Doctor 4">
+            </div>
+            <div class="doctor-info">
+              <h3>Dra. Ana García</h3>
+              <span>Pediatra</span>
+              <div class="social">
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3 col-md-6">
+          <h3>Salud Total</h3>
+          <p>
+            Av. Principal 1234<br>
+            Ciudad, País<br><br>
+            <strong>Teléfono:</strong> +1 234 567 890<br>
+            <strong>Email:</strong> info@clinicasaludtotal.com<br>
+          </p>
+        </div>
+        <div class="col-lg-3 col-md-6 footer-links">
+          <h3>Enlaces útiles</h3>
+          <ul>
+            <li><a href="#">Inicio</a></li>
+            <li><a href="#">Acerca de nosotros</a></li>
+            <li><a href="#">Servicios</a></li>
+            <li><a href="#">Términos de servicio</a></li>
+            <li><a href="#">Política de privacidad</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-3 col-md-6 footer-links">
+          <h3>Nuestros servicios</h3>
+          <ul>
+            <li><a href="#">Cardiología</a></li>
+            <li><a href="#">Neurología</a></li>
+            <li><a href="#">Ortopedia</a></li>
+            <li><a href="#">Pediatría</a></li>
+            <li><a href="#">Oftalmología</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-3 col-md-6 footer-newsletter">
+          <h3>Nuestro boletín</h3>
+          <p>Suscríbete a nuestro boletín para recibir las últimas noticias y promociones.</p>
+          <form>
+            <input type="email" name="email">
+            <button type="submit">Suscribirse</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong>Salud Total</strong>. Todos los derechos reservados
       </div>
     </div>
   </footer>
 
-  <!-- Bootstrap JS + Popper -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>
