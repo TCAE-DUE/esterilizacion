@@ -1,47 +1,253 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Document</title>
-	 <style>
-      body {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        margin: 0;
-        background-color: #f9f9f9;
-        font-family: Arial, sans-serif;
-        text-align: center;
-      }
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Página de inicio del Hospital Dr. Negrin, dedicada a la Unidad Central de Esterilización.">
+  <title>INICIO</title>
 
-      h1 {
-        font-size: 3em;
-        color: #222;
-        margin-bottom: 40px;
-        max-width: 90%;
-      }
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
-      a.boton {
-        display: inline-block;
-        padding: 15px 30px;
-        font-size: 1.5em;
-        color: white;
-        background-color: #007bff;
-        border: none;
-        border-radius: 8px;
-        text-decoration: none;
-        transition: background-color 0.3s;
-      }
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-      a.boton:hover {
-        background-color: #0056b3;
-      }
-    </style>
+  <!-- Remixicon -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+
+  <!-- Bootstrap Icons (para los íconos dropdown) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Tu estilo personalizado (si fuera necesario, puedes incrustarlo también aquí si ya no quieres assets/css/style.css) -->
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+    }
+
+    #header {
+      background: #fff;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      padding: 10px 0;
+    }
+
+    .logo a {
+      font-size: 28px;
+      font-weight: bold;
+      color: #000;
+      text-decoration: none;
+    }
+
+    .logo span {
+      color: #007bff;
+    }
+
+    .icon-box {
+      text-align: center;
+      padding: 20px;
+      border: 1px solid #eee;
+      border-radius: 8px;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .icon-box:hover {
+      background: #f4f4f4;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .icon-box i {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    footer {
+      background: #f8f9fa;
+      padding: 40px 0 20px 0;
+      font-size: 14px;
+    }
+
+    .footer-info h3 {
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+
+    .footer-links h4 {
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    .footer-links ul {
+      padding-left: 0;
+      list-style: none;
+    }
+
+    .footer-links ul li {
+      margin-bottom: 10px;
+    }
+
+    .footer-links ul li i {
+      margin-right: 6px;
+    }
+
+    #hero {
+      background: #e9f0f5;
+      padding: 100px 0;
+      text-align: center;
+    }
+  </style>
 </head>
+
 <body>
-	<h1>Pagina 2</h1>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top">
+    <div class="container d-flex align-items-center justify-content-lg-between">
+      <h1 class="logo me-auto me-lg-0"><a href="#">HOSPITAL <span>DR. NEGRIN</span></a></h1>
+      <img src="assets/img/LOGO4.png" alt="Logo del Hospital Dr. Negrin" width="160" height="60">
+
+      <nav id="navbar" class="navbar order-last order-lg-0">
+        <ul class="navbar-nav d-flex flex-row gap-3">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">MAQUINAS</a>
+            <ul class="dropdown-menu">
+              <li class="dropdown-submenu dropend">
+                <a class="dropdown-item dropdown-toggle" href="#">ZONA SUCIA</a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="Maquina/Lavadora_1/Lavadora_1.html">LAVADORAS STEELCO 1-2-3</a></li>
+                  <li><a class="dropdown-item" href="Maquina/Lavadora_4/Lavadora_4.html">LAVADORA 4</a></li>
+                  <li class="dropdown-submenu dropend">
+                    <a class="dropdown-item dropdown-toggle" href="#">SECADORAS</a>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="Maquina/Secadora_1/Secadora_1.html">SECADORA 1</a></li>
+                      <li><a class="dropdown-item" href="Maquina/Secadora_2/Secadora_2.html">SECADORA 2</a></li>
+                    </ul>
+                  </li>
+                  <li class="dropdown-submenu dropend">
+                    <a class="dropdown-item dropdown-toggle" href="#">ULTRASONIDOS</a>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="Maquina/Ultrasonidos_1/Ultrasonidos_1.html">ULTRASONIDOS 1</a></li>
+                      <li><a class="dropdown-item" href="Maquina/Ultrasonidos_2/Ultrasonido_2.html">ULTRASONIDOS 2</a></li>
+                    </ul>
+                  </li>
+                  <li><a class="dropdown-item" href="Maquina/Tren_Carros/Tren_Carros.html">TREN DE CARROS</a></li>
+                </ul>
+              </li>
+              <li class="dropdown-submenu dropend">
+                <a class="dropdown-item dropdown-toggle" href="#">ZONA ESTERIL</a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="Maquina/Autoclave_1/Autoclave_1.html">AUTOCLAVE 1</a></li>
+                  <li><a class="dropdown-item" href="Maquina/Autoclave_2/Autoclave_2.html">AUTOCLAVE 2</a></li>
+                  <li><a class="dropdown-item" href="Maquina/Autoclave_3/Autoclave_3.html">AUTOCLAVE 3</a></li>
+                  <li><a class="dropdown-item" href="Maquina/Autoclave_4/Autoclave_4.html">AUTOCLAVE 4</a></li>
+                  <li><a class="dropdown-item" href="Maquina/V-PRO/V-pro.html">V-PRO</a></li>
+                  <li><a class="dropdown-item" href="Maquina/PLASMA/Plasma.html">PLASMA</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+
+          <li class="nav-item"><a class="nav-link" href="Tcae/WallBook/WALLBOOK_index.html">MURO</a></li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">TUTORIALES</a>
+            <ul class="dropdown-menu">
+              <li class="dropdown-submenu dropend">
+                <a class="dropdown-item dropdown-toggle" href="#">EMBOLSADO</a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="tutorial/index_tuto.html">ZONA CENTRO</a></li>
+                  <li><a class="dropdown-item" href="#">ZONA ESTERIL</a></li>
+                </ul>
+              </li>
+              <li class="dropdown-submenu dropend">
+                <a class="dropdown-item dropdown-toggle" href="#">ZONA ESTERIL</a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Z. AUTOCLAVES</a></li>
+                  <li><a class="dropdown-item" href="#">Z. ESTERIL</a></li>
+                  <li><a class="dropdown-item" href="#">Z. COLOCACION</a></li>
+                  <li><a class="dropdown-item" href="#">Z. PUERTA</a></li>
+                  <li><a class="dropdown-item" href="#">Z. MONTACARGAS</a></li>
+                  <li><a class="dropdown-item" href="#">Z. SUCIA</a></li>
+                </ul>
+              </li>
+              <li><a class="dropdown-item" href="tutorial/Marvax/index_Marvax.html">MARVAX</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item"><a class="nav-link" href="WALLBOOK/Funciones/funciones.html">FUNCIONES TCAE/DUE</a></li>
+          <li class="nav-item"><a class="nav-link" href="Tcae/Nosotros/NosotrosIndex.html">Nosotros</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header><!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex align-items-center justify-content-center">
+    <div class="container">
+      <div class="row align-items-center my-5">
+        <div class="col-xl-6 col-lg-8 text-center">
+          <h1>Unidad Central de Esterilización<span>.</span></h1>
+          <h2>Comprometidos con la pureza, dedicados a la salud.</h2>
+        </div>
+      </div>
+
+      <div class="row gy-4 mt-5 justify-content-center">
+        <div class="col-xl-2 col-md-4">
+          <a href="Tcae/indexTCAE.html">
+            <div class="icon-box">
+              <i class="ri-nurse-line"></i>
+              <h3>T.C.A.E.</h3>
+            </div>
+          </a>
+        </div>
+        <div class="col-xl-2 col-md-4">
+          <a href="DUE/indexDue.html">
+            <div class="icon-box">
+              <i class="ri-syringe-line"></i>
+              <h3>D.U.E.</h3>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section><!-- End Hero -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3 col-md-6 footer-info">
+          <h3>DOCTOR NEGRIN<span>.</span></h3>
+        </div>
+
+        <div class="col-lg-2 col-md-6 footer-links">
+          <h4>Links del Servicio</h4>
+          <ul>
+            <li><i class="bi bi-chevron-right"></i> <a href="http://intranet/">Intranet</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="http://10.136.26.52/recursoshumanos/gestion_personal.html">Oficina de Personal</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="http://10.136.26.82:8080/hdn/acc.jsp">Tabaiba</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">Sicho</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-2 col-md-6 footer-links">
+          <ul>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">Flor</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">Correo Corporativo</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">Nominas</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">Activar Cuenta DRAGO</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">Activar Cuenta INTRANET</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="text-center mt-4">
+        &copy; <strong><span>ISRAEL</span></strong>. All Rights Reserved<br>
+        Designed by <a href="#">ISRAEL</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS + Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
