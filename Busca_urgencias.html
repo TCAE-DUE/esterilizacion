@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Búsqueda de Cajas Quirúrgicas</title>
+    <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Iconos Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f4f4f4;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        h1 {
+            color: #333;
+        }
+        .list-group {
+            margin-top: 20px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background-color: #f9f9f9;
+            margin: 5px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .pack-info {
+            background-color: rgba(255, 99, 71, 0.3); /* Rojo flojo */
+            border: 1px solid #ff6347; /* Borde rojo */
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+        .btn-custom {
+    background-color: #ADD8E6; /* Color de fondo personalizado */
+    color: black; /* Color del texto */
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Búsqueda de Cajas Quirúrgicas</h1>
+        <div class="input-group mb-3">
+            <input type="text" id="bodyPart" class="form-control" placeholder="Ingrese parte del cuerpo">
+            <div class="input-group-append">
+                <button class="btn btn-primary" onclick="buscarCajas()">Buscar</button>
+            </div>
+        </div>
+        <div id="result" class="mb-4"></div>
+
+        <div class="row">
+           <div class="col-md-12">
+                <h2>Copiar</h2>
+                <div class="list-group">
+    <div class="row">
+        <div class="col-4">
+            <button class="list-group-item list-group-item-action btn btn-custom btn-lg" onclick="copiarTexto('muñeca placa')">Muñeca Placa</button>
+        </div>
+            <div class="col-4">
+            <button class="list-group-item list-group-item-action btn btn-custom btn-lg" onclick="copiarTexto('muñeca fijador')">Muñeca Fijador</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4">
+            <button class="list-group-item list-group-item-action btn btn-custom btn-lg" onclick="copiarTexto('tobillo placa')">Tobillo Placa</button>
+        </div>
+        <div class="col-4">
+            <button class="list-group-item list-group-item-action btn btn-custom btn-lg" onclick="copiarTexto('tobillo fijador')">Tobillo Fijador</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4">
+            <button class="list-group-item list-group-item-action btn btn-custom btn-lg" onclick="copiarTexto('pelvis fijador')">Pelvis Fijador</button>
+        </div>
+        <div class="col-4">
+            <button class="list-group-item list-group-item-action btn btn-custom btn-lg" onclick="copiarTexto('protesis parcial cadera')">Protesis Parcial Cadera</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4">
+            <button class="list-group-item list-group-item-action btn btn-custom btn-lg" onclick="copiarTexto('miembro superior fijador')">Miembro Superior Fijador</button>
+        </div>
+        <div class="col-4">
+            <button class="list-group-item list-group-item-action btn btn-custom btn-lg" onclick="copiarTexto('clavo intramedular')">Clavo Intramedular</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4">
+            <button class="list-group-item list-group-item-action btn btn-custom btn-lg" onclick="copiarTexto('cens (nariz)')">Cens (Nariz)</button>
+        </div>
+        <div class="col-4">
+            <button class="list-group-item list-group-item-action btn btn-custom btn-lg" onclick="copiarTexto('aneurisma aorto-amdominal')">Aneurisma Aorto-Abdominal</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4">
+            <button class="list-group-item list-group-item-action btn btn-custom btn-lg" onclick="copiarTexto('aneurisma cerebral (craneotomia)')">Aneurisma Cerebral (Craneotomia)</button>
+        </div>
+    </div>
+</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    const data = {
+        "muñeca placa": ["MANO", "MUÑECA EXPERT (newclip) o APTUS RADIO (CPL) o LOQTEC RADIO DISTAL","MOTOR SOLICITADO POR QUIROFANO","PACK 8"],
+        "muñeca fijador": ["MANO","MOTOR SOLICITADO POR QUIROFANO","PACK DESECHABLE PENNING MUÑECA DE ORTHOFIX (UBICADO EN QNO)","PACK ∅"],
+        "tobillo placa": ["TRAUMA PEQUEÑA", "TORNILLOS TITANIO O EVOS 1A 1B 1C Y 1D o LOQTEC PLACAS RECTAS","MOTOR SOLICITADO POR QUIROFANO","PACK ∅"],
+        "tobillo fijador": ["MANO", "TOBILLO GALAXY 1 o 2 o GALAXY 2 (mienbro inferior) + CAJA ORTHOFIX IMPLANTES Y TORNILLOS 1 o 2 (estas caja tienen los PINES)","MOTOR SOLICITADO POR QUIROFANO","PACK ∅"],
+        "pelvis fijador": ["BERBIQUI Y CORTATORNILLOS","ENDER O KUNTSCHER","GALAXY 1A Y 1B(miembro superior e inferior) o ORTHOFIX PELVICO ","ORTHOFIX IMPLANTES Y TORNILLOS 1 o 2 (estas cajas tienen los PINES)","MOTOR SOLICITADO POR QUIROFANO","PACK ∅"],
+        "protesis parcial cadera": ["TRAUMA GRANDE","COMPLEMENTO PARCIAL PROTESIS","PROTESIS PARCIAL CADERA EUROMED (3 JUEGOS)","MOTOR PROTECTRAUMA/MOTOR CON SIERRA","PACK 5"],
+        "miembro superior fijador": ["ENDER O KUNTSCHER","GALAXY 1A Y 1B (mienbro superior e inferior) o PACK DESECHABLE ELBOW (ubicado en QNO.)","ORTHOFIX IMPLANTES Y TORNILLOS 1 o 2 (estas cajas tienen los PINES))","MOTOR SOLICITADO POR QUIROFANO","PACK ∅"],
+        "clavo intramedular": ["OPCION 1:\nENDER O KUNCHER O TRAUMA GRANDE (PARA CLAVO LARGO) MOTOR SOLICITADO POR QNO\nVITUS","OPCION 2:\nENDER O KUNCHER O TRAUMA GRANDE (PARA CLAVO LARGO) MOTOR SOLICITADO POR QNO.\n GAMMA 3 PARA CLAVO CORTO GAMMA 3","\nOPCION 3:\nENDER O KUNCHER O TRAUMA GRANDE (PARA CLAVO LARGO) MOTOR SOLICITADO POR QNO.\nPARA CLAVO LARGO GAMMA 3 + GAMMA3 CLAVOS LARGOS + GAMMA 3 FRESADO","OPCION 4:\nENDER O KUNCHER O TRAUMA GRANDE (PARA CLAVO LARGO) MOTOR SOLICITADO POR QNO\nAFFIXUS","OPCION 5:\nENDER O KUNCHER O TRAUMA GRANDE (PARA CLAVO LARGO) MOTOR SOLICITADO POR QNO\nPARA CLAVO CORTO DR. ORIHUELA TRIGEN INTERTAN GOLD + TRIGEN METANAIL BASICO","OPCION 6:\nENDER O KUNCHER O TRAUMA GRANDE (PARA CLAVO LARGO) MOTOR SOLICITADO POR QNO\nPARA CLAVO LARGO: TRIGEN METATAN + TRIGEN METANAIL BASICO","OPCION 7:\nENDER O KUNCHER O TRAUMA GRANDE (PARA CLAVO LARGO) MOTOR SOLICITADO POR QNO\nPARA FEMUR/TIBIA:TRIGEN METANAIL RETROGRADO FEMUR/TIBIA O TRIGEN SUPRACONDILAR + TRIGEN METANAIL BASICO","OPCION 8:\nENDER O KUNCHER O TRAUMA GRANDE (PARA CLAVO LARGO) MOTOR SOLICITADO POR QNO\nPARA HUMERO: TRIGEN HUMERAL","PACK 12"],
+        "cens (nariz)": ["ENDOSCOPIA NASAL","MOTOR NARIZ XISHAN","PACK ∅"],
+        "aneurisma aorto-amdominal": ["LAPAROTOMIA VASCULAR 1 o 2","SEPARADOR MANHATTHAN 1 o 2 o 3 (EL Nº3 EN ULTIMO LUGAR)","PACK 2"],
+        "aneurisma cerebral (craneotomia)": ["CRANEO 1","NEUROSYSTEM 1", "RETRACTOR GRAMBERG 1","MOTOR MIDAS REX 2","PACK 11"]
+    };
+
+    function buscarCajas() {
+        const bodyPart = document.getElementById('bodyPart').value.toLowerCase().trim();
+        const resultDiv = document.getElementById('result');
+        resultDiv.innerHTML = '';
+
+        if (data[bodyPart]) {
+            const cajas = data[bodyPart];
+            const ul = document.createElement('ul');
+            cajas.forEach(caja => {
+                const li = document.createElement('li');
+                if (caja.includes("PACK")) {
+                    li.innerHTML = `<div class="pack-info">${caja.replace(/\n/g, "<br>")}</div>`;
+                } else {
+                    li.innerHTML = caja.replace(/\n/g, "<br>");
+                }
+                ul.appendChild(li);
+            });
+            resultDiv.appendChild(ul);
+        } else {
+            resultDiv.textContent = 'No se encontraron cajas quirúrgicas para la parte del cuerpo ingresada.';
+        }
+    }
+
+    function copiarTexto(texto) {
+        const input = document.getElementById('bodyPart');
+        input.value = texto; // Copia el texto en el input
+        input.focus(); // Enfoca el input
+    }
+
+    // Detectar la tecla Enter
+    document.getElementById('bodyPart').addEventListener('keydown', function(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault(); // Evita que se envíe el formulario si hay uno
+            buscarCajas(); // Llama a la función de búsqueda
+        }
+    });
+    </script>
+
+</body>
+</html>
