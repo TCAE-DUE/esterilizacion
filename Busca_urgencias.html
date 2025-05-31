@@ -49,68 +49,51 @@
 </head>
 <body>
     <div class="container">
-        <h1 class="text-center">Búsqueda de Cajas Quirúrgicas</h1>
-        <div class="input-group mb-3">
-            <input type="text" id="bodyPart" class="form-control" placeholder="Ingrese parte del cuerpo">
-            <div class="input-group-append">
-                <button class="btn btn-primary" onclick="buscarCajas()">Buscar</button>
-            </div>
-        </div>
-        <div id="result" class="mb-4"></div>
+    <h1 class="text-center">Búsqueda de Cajas Quirúrgicas</h1>
+    <div class="input-group mb-3">
+      <input type="text" id="bodyPart" class="form-control" placeholder="Ingrese parte del cuerpo" />
+      <button class="btn btn-primary" onclick="buscarCajas()">Buscar</button>
+    </div>
 
-        <div class="row">
-           <div class="col-md-12">
-                <h2>Copiar</h2>
-                <div class="list-group">
-    <div class="row">
-        <div class="col-4">
-            <button class="list-group-item list-group-item-action btn btn-custom btn-lg" onclick="copiarTexto('muñeca placa')">Muñeca Placa</button>
-        </div>
-            <div class="col-4">
-            <button class="list-group-item list-group-item-action btn btn-custom btn-lg" onclick="copiarTexto('muñeca fijador')">Muñeca Fijador</button>
-        </div>
+    <div id="result" class="mb-4"></div>
+
+    <h2>Copiar</h2>
+    <div class="row g-3">
+      <div class="col-12 col-md-4">
+        <button class="btn btn-custom" onclick="copiarTexto('muñeca placa')">Muñeca Placa</button>
+      </div>
+      <div class="col-12 col-md-4">
+        <button class="btn btn-custom" onclick="copiarTexto('muñeca fijador')">Muñeca Fijador</button>
+      </div>
+      <div class="col-12 col-md-4">
+        <button class="btn btn-custom" onclick="copiarTexto('tobillo placa')">Tobillo Placa</button>
+      </div>
+      <div class="col-12 col-md-4">
+        <button class="btn btn-custom" onclick="copiarTexto('tobillo fijador')">Tobillo Fijador</button>
+      </div>
+      <div class="col-12 col-md-4">
+        <button class="btn btn-custom" onclick="copiarTexto('pelvis fijador')">Pelvis Fijador</button>
+      </div>
+      <div class="col-12 col-md-4">
+        <button class="btn btn-custom" onclick="copiarTexto('protesis parcial cadera')">Prótesis Parcial Cadera</button>
+      </div>
+      <div class="col-12 col-md-4">
+        <button class="btn btn-custom" onclick="copiarTexto('miembro superior fijador')">Miembro Superior Fijador</button>
+      </div>
+      <div class="col-12 col-md-4">
+        <button class="btn btn-custom" onclick="copiarTexto('clavo intramedular')">Clavo Intramedular</button>
+      </div>
+      <div class="col-12 col-md-4">
+        <button class="btn btn-custom" onclick="copiarTexto('cens (nariz)')">Cens (Nariz)</button>
+      </div>
+      <div class="col-12 col-md-4">
+        <button class="btn btn-custom" onclick="copiarTexto('aneurisma aorto-amdominal')">Aneurisma Aorto-Abdominal</button>
+      </div>
+      <div class="col-12 col-md-4">
+        <button class="btn btn-custom" onclick="copiarTexto('aneurisma cerebral (craneotomia)')">Aneurisma Cerebral (Craneotomía)</button>
+      </div>
     </div>
-    <div class="row">
-        <div class="col-4">
-            <button class="list-group-item list-group-item-action btn btn-custom btn-lg" onclick="copiarTexto('tobillo placa')">Tobillo Placa</button>
-        </div>
-        <div class="col-4">
-            <button class="list-group-item list-group-item-action btn btn-custom btn-lg" onclick="copiarTexto('tobillo fijador')">Tobillo Fijador</button>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-4">
-            <button class="list-group-item list-group-item-action btn btn-custom btn-lg" onclick="copiarTexto('pelvis fijador')">Pelvis Fijador</button>
-        </div>
-        <div class="col-4">
-            <button class="list-group-item list-group-item-action btn btn-custom btn-lg" onclick="copiarTexto('protesis parcial cadera')">Protesis Parcial Cadera</button>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-4">
-            <button class="list-group-item list-group-item-action btn btn-custom btn-lg" onclick="copiarTexto('miembro superior fijador')">Miembro Superior Fijador</button>
-        </div>
-        <div class="col-4">
-            <button class="list-group-item list-group-item-action btn btn-custom btn-lg" onclick="copiarTexto('clavo intramedular')">Clavo Intramedular</button>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-4">
-            <button class="list-group-item list-group-item-action btn btn-custom btn-lg" onclick="copiarTexto('cens (nariz)')">Cens (Nariz)</button>
-        </div>
-        <div class="col-4">
-            <button class="list-group-item list-group-item-action btn btn-custom btn-lg" onclick="copiarTexto('aneurisma aorto-amdominal')">Aneurisma Aorto-Abdominal</button>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-4">
-            <button class="list-group-item list-group-item-action btn btn-custom btn-lg" onclick="copiarTexto('aneurisma cerebral (craneotomia)')">Aneurisma Cerebral (Craneotomia)</button>
-        </div>
-    </div>
-</div>
-            </div>
-        </div>
-    </div>
+  </div>
 
     <script>
     const data = {
