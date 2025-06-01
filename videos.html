@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Plantilla para 9 Videos</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #111;
+    color: #eee;
+    margin: 20px;
+  }
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .video-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  .video-slot {
+    border: 2px dashed #555;
+    aspect-ratio: 16 / 9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #777;
+    font-size: 1.2rem;
+  }
+</style>
+</head>
+<body>
+
+<h1>Plantilla para 9 Videos</h1>
+
+<div class="video-grid">
+  <div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1089430635?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="carga lavadora"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+  <div class="video-slot" id="slot2">Aquí va el video 2</div>
+  <div class="video-slot" id="slot3">Aquí va el video 3</div>
+  <div class="video-slot" id="slot4">Aquí va el video 4</div>
+  <div class="video-slot" id="slot5">Aquí va el video 5</div>
+  <div class="video-slot" id="slot6">Aquí va el video 6</div>
+  <div class="video-slot" id="slot7">Aquí va el video 7</div>
+  <div class="video-slot" id="slot8">Aquí va el video 8</div>
+  <div class="video-slot" id="slot9">Aquí va el video 9</div>
+</div>
+
+</body>
+</html>
