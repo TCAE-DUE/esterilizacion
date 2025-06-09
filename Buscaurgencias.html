@@ -3,150 +3,721 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Búsqueda de Cajas Quirúrgicas</title>
+    <title>Sistema de Búsqueda de Cajas Quirúrgicas</title>
     <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Iconos Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #64748b;
+            --success-color: #059669;
+            --warning-color: #d97706;
+            --danger-color: #dc2626;
+            --light-bg: #f8fafc;
+            --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --border-radius: 12px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
         body {
-            background-color: #f4f4f4;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px 0;
         }
-        .container {
-            margin-top: 50px;
+
+        .main-container {
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--card-shadow);
+            padding: 2rem;
+            margin: 0 auto;
+            max-width: 1200px;
         }
-        h1 {
-            color: #333;
+
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
         }
-        .list-group {
-            margin-top: 20px;
+
+        .header h1 {
+            color: #1e293b;
+            font-weight: 700;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
         }
-        ul {
-            list-style-type: none;
-            padding: 0;
+
+        .header p {
+            color: var(--secondary-color);
+            font-size: 1.1rem;
         }
-        li {
-            background-color: #f9f9f9;
-            margin: 5px 0;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
+
+        .search-section {
+            background: var(--light-bg);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 2rem;
         }
+
+        .search-input {
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 12px 16px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .btn-search {
+            background: var(--primary-color);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-search:hover {
+            background: #1d4ed8;
+            transform: translateY(-1px);
+        }
+
+        .btn-clear {
+            background: var(--secondary-color);
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            color: white;
+            margin-left: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-clear:hover {
+            background: #475569;
+            color: white;
+        }
+
+        .quick-buttons {
+            margin-bottom: 2rem;
+        }
+
+        .quick-buttons h3 {
+            color: #1e293b;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .btn-quick {
+            background: linear-gradient(135deg, #60a5fa, #3b82f6);
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            margin: 4px;
+        }
+
+        .btn-quick:hover {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+            color: white;
+        }
+
+        .results-section {
+            margin-top: 2rem;
+        }
+
+        .result-item {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: var(--border-radius);
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .result-item:hover {
+            box-shadow: var(--card-shadow);
+            transform: translateX(4px);
+        }
+
         .pack-info {
-            background-color: rgba(255, 99, 71, 0.3); /* Rojo flojo */
-            border: 1px solid #ff6347; /* Borde rojo */
-            padding: 10px;
-            border-radius: 4px;
-            margin-top: 10px;
+            background: linear-gradient(135deg, #fee2e2, #fecaca);
+            border: 2px solid #f87171;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 0.5rem;
+            font-weight: 600;
+            color: #7f1d1d;
         }
-        .btn-custom {
-    background-color: #ADD8E6; /* Color de fondo personalizado */
-    color: blue; /* Color del texto */
-}
+
+        .pack-info i {
+            margin-right: 8px;
+            color: var(--danger-color);
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 2rem;
+            color: var(--secondary-color);
+            font-size: 1.1rem;
+        }
+
+        .no-results i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        .stats-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: var(--light-bg);
+            border-radius: 8px;
+        }
+
+        .stats-item {
+            text-align: center;
+        }
+
+        .stats-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .stats-label {
+            font-size: 0.9rem;
+            color: var(--secondary-color);
+        }
+
+        .search-suggestions {
+            margin-top: 1rem;
+        }
+
+        .suggestion-tag {
+            display: inline-block;
+            background: #e0e7ff;
+            color: #3730a3;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .suggestion-tag:hover {
+            background: #c7d2fe;
+            transform: scale(1.05);
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .spinner {
+            border: 3px solid #f3f4f6;
+            border-radius: 50%;
+            border-top: 3px solid var(--primary-color);
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            .main-container {
+                margin: 0 10px;
+                padding: 1.5rem;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .btn-quick {
+                font-size: 0.8rem;
+                padding: 8px 12px;
+            }
+            
+            .stats-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
     </style>
 </head>
 <body>
     <div class="container">
-    <h1 class="text-center">Búsqueda de Cajas Quirúrgicas</h1>
-    <div class="input-group mb-3">
-      <input type="text" id="bodyPart" class="form-control" placeholder="Ingrese parte del cuerpo" />
-      <button class="btn btn-primary" onclick="buscarCajas()">Buscar</button>
-    </div>
+        <div class="main-container">
+            <!-- Header -->
+            <div class="header">
+                <h1><i class="fas fa-medical-kit"></i> Sistema de Cajas Quirúrgicas</h1>
+                <p>Búsqueda rápida y eficiente de equipamiento médico</p>
+            </div>
 
-    <div id="result" class="mb-4"></div>
+            <!-- Search Section -->
+            <div class="search-section">
+                <div class="row align-items-center">
+                    <div class="col-12 col-md-8">
+                        <div class="input-group">
+                            <span class="input-group-text bg-white border-end-0">
+                                <i class="fas fa-search text-muted"></i>
+                            </span>
+                            <input type="text" id="bodyPart" class="form-control search-input border-start-0" 
+                                   placeholder="Ingrese parte del cuerpo o procedimiento..." 
+                                   autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4 mt-2 mt-md-0">
+                        <button class="btn btn-primary btn-search w-100" onclick="buscarCajas()">
+                            <i class="fas fa-search"></i> Buscar
+                        </button>
+                        <button class="btn btn-clear" onclick="limpiarBusqueda()">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
 
-    <h2>Copiar</h2>
-    <div class="row g-3">
-      <div class="col-12 col-md-4">
-        <button class="btn btn-custom" onclick="copiarTexto('muñeca placa')">Muñeca Placa</button>
-      </div>
-      <div class="col-12 col-md-4">
-        <button class="btn btn-custom" onclick="copiarTexto('muñeca fijador')">Muñeca Fijador</button>
-      </div>
-      <div class="col-12 col-md-4">
-        <button class="btn btn-custom" onclick="copiarTexto('tobillo placa')">Tobillo Placa</button>
-      </div>
-      <div class="col-12 col-md-4">
-        <button class="btn btn-custom" onclick="copiarTexto('tobillo fijador')">Tobillo Fijador</button>
-      </div>
-      <div class="col-12 col-md-4">
-        <button class="btn btn-custom" onclick="copiarTexto('pelvis fijador')">Pelvis Fijador</button>
-      </div>
-      <div class="col-12 col-md-4">
-        <button class="btn btn-custom" onclick="copiarTexto('protesis parcial cadera')">Prótesis Parcial Cadera</button>
-      </div>
-      <div class="col-12 col-md-4">
-        <button class="btn btn-custom" onclick="copiarTexto('miembro superior fijador')">Miembro Superior Fijador</button>
-      </div>
-      <div class="col-12 col-md-4">
-        <button class="btn btn-custom" onclick="copiarTexto('clavo intramedular')">Clavo Intramedular</button>
-      </div>
-      <div class="col-12 col-md-4">
-        <button class="btn btn-custom" onclick="copiarTexto('cens (nariz)')">Cens (Nariz)</button>
-      </div>
-      <div class="col-12 col-md-4">
-        <button class="btn btn-custom" onclick="copiarTexto('aneurisma aorto-amdominal')">Aneurisma Aorto-Abdominal</button>
-      </div>
-      <div class="col-12 col-md-4">
-        <button class="btn btn-custom" onclick="copiarTexto('aneurisma cerebral (craneotomia)')">Aneurisma Cerebral (Craneotomía)</button>
-      </div>
+            <!-- Stats -->
+            <div class="stats-container">
+                <div class="stats-item">
+                    <div class="stats-number" id="totalProcedures">11</div>
+                    <div class="stats-label">Procedimientos</div>
+                </div>
+                <div class="stats-item">
+                    <div class="stats-number" id="searchCount">0</div>
+                    <div class="stats-label">Búsquedas</div>
+                </div>
+                <div class="stats-item">
+                    <div class="stats-number" id="lastUsed">--</div>
+                    <div class="stats-label">Última búsqueda</div>
+                </div>
+            </div>
+
+            <!-- Quick Access Buttons -->
+            <div class="quick-buttons">
+                <h3><i class="fas fa-bolt"></i> Acceso Rápido</h3>
+                <div class="row g-2">
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <button class="btn btn-quick w-100" onclick="copiarTexto('muñeca placa')">
+                            <i class="fas fa-hand-paper"></i> Muñeca Placa
+                        </button>
+                    </div>
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <button class="btn btn-quick w-100" onclick="copiarTexto('muñeca fijador')">
+                            <i class="fas fa-hand-paper"></i> Muñeca Fijador
+                        </button>
+                    </div>
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <button class="btn btn-quick w-100" onclick="copiarTexto('tobillo placa')">
+                            <i class="fas fa-shoe-prints"></i> Tobillo Placa
+                        </button>
+                    </div>
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <button class="btn btn-quick w-100" onclick="copiarTexto('tobillo fijador')">
+                            <i class="fas fa-shoe-prints"></i> Tobillo Fijador
+                        </button>
+                    </div>
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <button class="btn btn-quick w-100" onclick="copiarTexto('pelvis fijador')">
+                            <i class="fas fa-bone"></i> Pelvis Fijador
+                        </button>
+                    </div>
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <button class="btn btn-quick w-100" onclick="copiarTexto('protesis parcial cadera')">
+                            <i class="fas fa-cogs"></i> Prótesis Cadera
+                        </button>
+                    </div>
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <button class="btn btn-quick w-100" onclick="copiarTexto('miembro superior fijador')">
+                            <i class="fas fa-hand-rock"></i> M. Superior
+                        </button>
+                    </div>
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <button class="btn btn-quick w-100" onclick="copiarTexto('clavo intramedular')">
+                            <i class="fas fa-tools"></i> Clavo Intramedular
+                        </button>
+                    </div>
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <button class="btn btn-quick w-100" onclick="copiarTexto('cens (nariz)')">
+                            <i class="fas fa-nose"></i> CENS (Nariz)
+                        </button>
+                    </div>
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <button class="btn btn-quick w-100" onclick="copiarTexto('aneurisma aorto-abdominal')">
+                            <i class="fas fa-heart"></i> Aneurisma Aórtico
+                        </button>
+                    </div>
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <button class="btn btn-quick w-100" onclick="copiarTexto('aneurisma cerebral (craneotomia)')">
+                            <i class="fas fa-brain"></i> Aneurisma Cerebral
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Loading -->
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p>Buscando...</p>
+            </div>
+
+            <!-- Results -->
+            <div id="result" class="results-section"></div>
+
+            <!-- Search Suggestions -->
+            <div class="search-suggestions" id="suggestions" style="display: none;">
+                <h5><i class="fas fa-lightbulb"></i> Sugerencias de búsqueda:</h5>
+                <div id="suggestionTags"></div>
+            </div>
+        </div>
     </div>
-  </div>
 
     <script>
-    const data = {
-        "muñeca placa": ["MANO", "MUÑECA EXPERT (newclip) o APTUS RADIO (CPL) o LOQTEC RADIO DISTAL","MOTOR SOLICITADO POR QUIROFANO","PACK 8"],
-        "muñeca fijador": ["MANO","MOTOR SOLICITADO POR QUIROFANO","SET DESECHABLE PENNING MUÑECA DE ORTHOFIX (UBICADO EN QNO)","PACK ∅"],
-        "tobillo placa": ["TRAUMA PEQUEÑA", "TORNILLOS TITANIO O EVOS 1A 1B 1C Y 1D o LOQTEC PLACAS RECTAS","MOTOR SOLICITADO POR QUIROFANO","PACK ∅"],
-        "tobillo fijador": ["MANO", "TOBILLO GALAXY 1 o 2 o GALAXY 2 (mienbro inferior) + CAJA ORTHOFIX IMPLANTES Y TORNILLOS 1 o 2 (estas caja tienen los PINES)","MOTOR SOLICITADO POR QUIROFANO","PACK ∅"],
-        "pelvis fijador": ["BERBIQUI Y CORTATORNILLOS","ENDER O KUNTSCHER","GALAXY 1A Y 1B(miembro superior e inferior) o ORTHOFIX PELVICO ","ORTHOFIX IMPLANTES Y TORNILLOS 1 o 2 (estas cajas tienen los PINES)","MOTOR SOLICITADO POR QUIROFANO","PACK ∅"],
-        "protesis parcial cadera": ["TRAUMA GRANDE","COMPLEMENTO PARCIAL PROTESIS","PROTESIS PARCIAL CADERA EUROMED (3 JUEGOS)","MOTOR PROTECTRAUMA/MOTOR CON SIERRA","PACK 5"],
-        "miembro superior fijador": ["ENDER O KUNTSCHER","GALAXY 1A Y 1B (mienbro superior e inferior) o SET DESECHABLE ELBOW (ubicado en QNO.)","ORTHOFIX IMPLANTES Y TORNILLOS 1 o 2 (estas cajas tienen los PINES))","MOTOR SOLICITADO POR QUIROFANO","PACK ∅"],
-        "clavo intramedular": ["OPCION 1:\nENDER O KUNCHER O TRAUMA GRANDE (PARA CLAVO LARGO) MOTOR SOLICITADO POR QNO\nVITUS","OPCION 2:\nENDER O KUNCHER O TRAUMA GRANDE (PARA CLAVO LARGO) MOTOR SOLICITADO POR QNO.\n GAMMA 3 PARA CLAVO CORTO GAMMA 3","\nOPCION 3:\nENDER O KUNCHER O TRAUMA GRANDE (PARA CLAVO LARGO) MOTOR SOLICITADO POR QNO.\nPARA CLAVO LARGO GAMMA 3 + GAMMA3 CLAVOS LARGOS + GAMMA 3 FRESADO","OPCION 4:\nENDER O KUNCHER O TRAUMA GRANDE (PARA CLAVO LARGO) MOTOR SOLICITADO POR QNO\nAFFIXUS","OPCION 5:\nENDER O KUNCHER O TRAUMA GRANDE (PARA CLAVO LARGO) MOTOR SOLICITADO POR QNO\nPARA CLAVO CORTO DR. ORIHUELA TRIGEN INTERTAN GOLD + TRIGEN METANAIL BASICO","OPCION 6:\nENDER O KUNCHER O TRAUMA GRANDE (PARA CLAVO LARGO) MOTOR SOLICITADO POR QNO\nPARA CLAVO LARGO: TRIGEN METATAN + TRIGEN METANAIL BASICO","OPCION 7:\nENDER O KUNCHER O TRAUMA GRANDE (PARA CLAVO LARGO) MOTOR SOLICITADO POR QNO\nPARA FEMUR/TIBIA:TRIGEN METANAIL RETROGRADO FEMUR/TIBIA O TRIGEN SUPRACONDILAR + TRIGEN METANAIL BASICO","OPCION 8:\nENDER O KUNCHER O TRAUMA GRANDE (PARA CLAVO LARGO) MOTOR SOLICITADO POR QNO\nPARA HUMERO: TRIGEN HUMERAL","PACK 12"],
-        "cens (nariz)": ["ENDOSCOPIA NASAL","MOTOR NARIZ XISHAN","PACK ∅"],
-        "aneurisma aorto-amdominal": ["LAPAROTOMIA VASCULAR 1 o 2","SEPARADOR MANHATTHAN 1 o 2 o 3 (EL Nº3 EN ULTIMO LUGAR)","PACK 2"],
-        "aneurisma cerebral (craneotomia)": ["CRANEO 1","NEUROSYSTEM 1", "RETRACTOR GRAMBERG 1","MOTOR MIDAS REX 2","PACK 11"]
-    };
+        // Base de datos mejorada con correcciones de ortografía
+        const data = {
+            "muñeca placa": {
+                cajas: ["MANO", "MUÑECA EXPERT (newclip) o APTUS RADIO (CPL) o LOQTEC RADIO DISTAL", "MOTOR SOLICITADO POR QUIRÓFANO"],
+                pack: "PACK 8",
+                categoria: "Traumatología"
+            },
+            "muñeca fijador": {
+                cajas: ["MANO", "MOTOR SOLICITADO POR QUIRÓFANO", "SET DESECHABLE PENNING MUÑECA DE ORTHOFIX (UBICADO EN QNO)"],
+                pack: "PACK ∅",
+                categoria: "Traumatología"
+            },
+            "tobillo placa": {
+                cajas: ["TRAUMA PEQUEÑA", "TORNILLOS TITANIO O EVOS 1A 1B 1C Y 1D o LOQTEC PLACAS RECTAS", "MOTOR SOLICITADO POR QUIRÓFANO"],
+                pack: "PACK ∅",
+                categoria: "Traumatología"
+            },
+            "tobillo fijador": {
+                cajas: ["MANO", "TOBILLO GALAXY 1 o 2 o GALAXY 2 (miembro inferior) + CAJA ORTHOFIX IMPLANTES Y TORNILLOS 1 o 2 (estas cajas tienen los PINES)", "MOTOR SOLICITADO POR QUIRÓFANO"],
+                pack: "PACK ∅",
+                categoria: "Traumatología"
+            },
+            "pelvis fijador": {
+                cajas: ["BERBIEQUÍ Y CORTATORNILLOS", "ENDER O KUNTSCHER", "GALAXY 1A Y 1B (miembro superior e inferior) o ORTHOFIX PÉLVICO", "ORTHOFIX IMPLANTES Y TORNILLOS 1 o 2 (estas cajas tienen los PINES)", "MOTOR SOLICITADO POR QUIRÓFANO"],
+                pack: "PACK ∅",
+                categoria: "Traumatología"
+            },
+            "protesis parcial cadera": {
+                cajas: ["TRAUMA GRANDE", "COMPLEMENTO PARCIAL PRÓTESIS", "PRÓTESIS PARCIAL CADERA EUROMED (3 JUEGOS)", "MOTOR PROTECTRAUMA/MOTOR CON SIERRA"],
+                pack: "PACK 5",
+                categoria: "Ortopedia"
+            },
+            "miembro superior fijador": {
+                cajas: ["ENDER O KUNTSCHER", "GALAXY 1A Y 1B (miembro superior e inferior) o SET DESECHABLE ELBOW (ubicado en QNO.)", "ORTHOFIX IMPLANTES Y TORNILLOS 1 o 2 (estas cajas tienen los PINES)", "MOTOR SOLICITADO POR QUIRÓFANO"],
+                pack: "PACK ∅",
+                categoria: "Traumatología"
+            },
+            "clavo intramedular": {
+                cajas: [
+                    "OPCIÓN 1: ENDER O KUNTSCHER O TRAUMA GRANDE (PARA CLAVO LARGO) MOTOR SOLICITADO POR QNO + VITUS",
+                    "OPCIÓN 2: ENDER O KUNTSCHER O TRAUMA GRANDE (PARA CLAVO LARGO) MOTOR SOLICITADO POR QNO + GAMMA 3 PARA CLAVO CORTO GAMMA 3",
+                    "OPCIÓN 3: ENDER O KUNTSCHER O TRAUMA GRANDE (PARA CLAVO LARGO) MOTOR SOLICITADO POR QNO + PARA CLAVO LARGO GAMMA 3 + GAMMA3 CLAVOS LARGOS + GAMMA 3 FRESADO",
+                    "OPCIÓN 4: ENDER O KUNTSCHER O TRAUMA GRANDE (PARA CLAVO LARGO) MOTOR SOLICITADO POR QNO + AFFIXUS",
+                    "OPCIÓN 5: ENDER O KUNTSCHER O TRAUMA GRANDE (PARA CLAVO LARGO) MOTOR SOLICITADO POR QNO + PARA CLAVO CORTO DR. ORIHUELA TRIGEN INTERTAN GOLD + TRIGEN METANAIL BÁSICO",
+                    "OPCIÓN 6: ENDER O KUNTSCHER O TRAUMA GRANDE (PARA CLAVO LARGO) MOTOR SOLICITADO POR QNO + PARA CLAVO LARGO: TRIGEN METATAN + TRIGEN METANAIL BÁSICO",
+                    "OPCIÓN 7: ENDER O KUNTSCHER O TRAUMA GRANDE (PARA CLAVO LARGO) MOTOR SOLICITADO POR QNO + PARA FÉMUR/TIBIA: TRIGEN METANAIL RETRÓGRADO FÉMUR/TIBIA O TRIGEN SUPRACONDÍLAR + TRIGEN METANAIL BÁSICO",
+                    "OPCIÓN 8: ENDER O KUNTSCHER O TRAUMA GRANDE (PARA CLAVO LARGO) MOTOR SOLICITADO POR QNO + PARA HÚMERO: TRIGEN HUMERAL"
+                ],
+                pack: "PACK 12",
+                categoria: "Traumatología"
+            },
+            "cens (nariz)": {
+                cajas: ["ENDOSCOPÍA NASAL", "MOTOR NARIZ XISHAN"],
+                pack: "PACK ∅",
+                categoria: "Otorrinolaringología"
+            },
+            "aneurisma aorto-abdominal": {
+                cajas: ["LAPAROTOMÍA VASCULAR 1 o 2", "SEPARADOR MANHATTAN 1 o 2 o 3 (EL Nº3 EN ÚLTIMO LUGAR)"],
+                pack: "PACK 2",
+                categoria: "Cirugía Vascular"
+            },
+            "aneurisma cerebral (craneotomia)": {
+                cajas: ["CRÁNEO 1", "NEUROSYSTEM 1", "RETRACTOR GRAMBERG 1", "MOTOR MIDAS REX 2"],
+                pack: "PACK 11",
+                categoria: "Neurocirugía"
+            }
+        };
 
-    function buscarCajas() {
-        const bodyPart = document.getElementById('bodyPart').value.toLowerCase().trim();
-        const resultDiv = document.getElementById('result');
-        resultDiv.innerHTML = '';
+        // Variables de estado
+        let searchCount = 0;
+        let lastSearchTime = null;
 
-        if (data[bodyPart]) {
-            const cajas = data[bodyPart];
-            const ul = document.createElement('ul');
-            cajas.forEach(caja => {
-                const li = document.createElement('li');
-                if (caja.includes("PACK")) {
-                    li.innerHTML = `<div class="pack-info">${caja.replace(/\n/g, "<br>")}</div>`;
-                } else {
-                    li.innerHTML = caja.replace(/\n/g, "<br>");
+        // Inicialización
+        document.addEventListener('DOMContentLoaded', function() {
+            loadStats();
+            setupEventListeners();
+        });
+
+        function setupEventListeners() {
+            const input = document.getElementById('bodyPart');
+            
+            // Enter key
+            input.addEventListener('keydown', function(event) {
+                if (event.key === 'Enter') {
+                    event.preventDefault();
+                    buscarCajas();
                 }
-                ul.appendChild(li);
             });
-            resultDiv.appendChild(ul);
-        } else {
-            resultDiv.textContent = 'No se encontraron cajas quirúrgicas para la parte del cuerpo ingresada.';
-        }
-    }
 
-    function copiarTexto(texto) {
-        const input = document.getElementById('bodyPart');
-        input.value = texto; // Copia el texto en el input
-        input.focus(); // Enfoca el input
-    }
-
-    // Detectar la tecla Enter
-    document.getElementById('bodyPart').addEventListener('keydown', function(event) {
-        if (event.key === 'Enter') {
-            event.preventDefault(); // Evita que se envíe el formulario si hay uno
-            buscarCajas(); // Llama a la función de búsqueda
+            // Búsqueda en tiempo real (opcional)
+            input.addEventListener('input', function() {
+                if (this.value.length > 2) {
+                    mostrarSugerencias(this.value);
+                } else {
+                    ocultarSugerencias();
+                }
+            });
         }
-    });
+
+        function buscarCajas() {
+            const bodyPart = document.getElementById('bodyPart').value.toLowerCase().trim();
+            const resultDiv = document.getElementById('result');
+            const loadingDiv = document.getElementById('loading');
+            
+            if (!bodyPart) {
+                mostrarError('Por favor, ingrese un término de búsqueda.');
+                return;
+            }
+
+            // Mostrar loading
+            loadingDiv.style.display = 'block';
+            resultDiv.innerHTML = '';
+            ocultarSugerencias();
+
+            // Simular delay de búsqueda
+            setTimeout(() => {
+                loadingDiv.style.display = 'none';
+                realizarBusqueda(bodyPart);
+                actualizarEstadisticas();
+            }, 500);
+        }
+
+        function realizarBusqueda(termino) {
+            const resultDiv = document.getElementById('result');
+            const resultado = data[termino];
+
+            if (resultado) {
+                mostrarResultados(resultado, termino);
+            } else {
+                // Búsqueda parcial
+                const coincidencias = buscarCoincidencias(termino);
+                if (coincidencias.length > 0) {
+                    mostrarCoincidenciasParciales(coincidencias);
+                } else {
+                    mostrarSinResultados(termino);
+                }
+            }
+        }
+
+        function buscarCoincidencias(termino) {
+            const coincidencias = [];
+            for (const [key, value] of Object.entries(data)) {
+                if (key.includes(termino) || termino.split(' ').some(palabra => key.includes(palabra))) {
+                    coincidencias.push({ key, value });
+                }
+            }
+            return coincidencias;
+        }
+
+        function mostrarResultados(resultado, termino) {
+            const resultDiv = document.getElementById('result');
+            
+            let html = `
+                <div class="fade-in">
+                    <h4><i class="fas fa-check-circle text-success"></i> Resultados para: <strong>${termino.toUpperCase()}</strong></h4>
+                    <div class="badge bg-info mb-3">${resultado.categoria}</div>
+                    <div class="result-items">
+            `;
+
+            resultado.cajas.forEach((caja, index) => {
+                html += `
+                    <div class="result-item">
+                        <i class="fas fa-box text-primary me-2"></i>
+                        ${caja.replace(/\n/g, "<br>")}
+                    </div>
+                `;
+            });
+
+            if (resultado.pack && resultado.pack !== "PACK ∅") {
+                html += `
+                    <div class="pack-info">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <strong>${resultado.pack}</strong>
+                    </div>
+                `;
+            }
+
+            html += '</div></div>';
+            resultDiv.innerHTML = html;
+        }
+
+        function mostrarCoincidenciasParciales(coincidencias) {
+            const resultDiv = document.getElementById('result');
+            
+            let html = `
+                <div class="fade-in">
+                    <h4><i class="fas fa-search text-warning"></i> Coincidencias encontradas (${coincidencias.length})</h4>
+                    <p class="text-muted">Se encontraron los siguientes procedimientos similares:</p>
+            `;
+
+            coincidencias.forEach(({key, value}) => {
+                html += `
+                    <div class="result-item" style="cursor: pointer;" onclick="copiarTexto('${key}')">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <strong>${key.toUpperCase()}</strong>
+                                <div class="badge bg-secondary ms-2">${value.categoria}</div>
+                            </div>
+                            <i class="fas fa-chevron-right text-muted"></i>
+                        </div>
+                    </div>
+                `;
+            });
+
+            html += '</div>';
+            resultDiv.innerHTML = html;
+        }
+
+        function mostrarSinResultados(termino) {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = `
+                <div class="no-results fade-in">
+                    <i class="fas fa-search-minus"></i>
+                    <h4>No se encontraron resultados</h4>
+                    <p>No se encontraron cajas quirúrgicas para "<strong>${termino}</strong>".</p>
+                    <p class="text-muted">Intente con términos como: muñeca, tobillo, pelvis, cadera, etc.</p>
+                </div>
+            `;
+            mostrarSugerenciasCompletas();
+        }
+
+        function mostrarError(mensaje) {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = `
+                <div class="alert alert-warning fade-in" role="alert">
+                    <i class="fas fa-exclamation-triangle me-2"></i>
+                    ${mensaje}
+                </div>
+            `;
+        }
+
+        function mostrarSugerencias(termino) {
+            const suggestions = Object.keys(data).filter(key => 
+                key.toLowerCase().includes(termino.toLowerCase())
+            );
+
+            if (suggestions.length > 0) {
+                const suggestionsDiv = document.getElementById('suggestions');
+                const tagsDiv = document.getElementById('suggestionTags');
+                
+                tagsDiv.innerHTML = suggestions.slice(0, 5).map(suggestion => 
+                    `<span class="suggestion-tag" onclick="copiarTexto('${suggestion}')">${suggestion}</span>`
+                ).join('');
+                
+                suggestionsDiv.style.display = 'block';
+            }
+        }
+
+        function mostrarSugerenciasCompletas() {
+            const suggestionsDiv = document.getElementById('suggestions');
+            const tagsDiv = document.getElementById('suggestionTags');
+            
+            const todasLasCategorias = [...new Set(Object.values(data).map(item => item.categoria))];
+            
+            tagsDiv.innerHTML = todasLasCategorias.map(categoria => 
+                `<span class="suggestion-tag bg-primary text-white">${categoria}</span>`
+            ).join('');
+            
+            suggestionsDiv.style.display = 'block';
+        }
+
+        function ocultarSugerencias() {
+            document.getElementById('suggestions').style.display = 'none';
+        }
+
+        function copiarTexto(texto) {
+            const input = document.getElementById('bodyPart');
+            input.value = texto;
+            input.focus();
+            
+            // Auto-buscar después de copiar
+            setTimeout(() => {
+                buscarCajas();
+            }, 300);
+        }
+
+        function limpiarBusqueda() {
+            document.getElementById('bodyPart').value = '';
+            document.getElementById('result').innerHTML = '';
+            ocultarSugerencias();
+            document.getElementById('bodyPart').focus();
+        }
+
+        function actualizarEstadisticas() {
+            searchCount++;
+            lastSearchTime = new Date().toLocaleTimeString();
+            
+            document.getElementById('searchCount').textContent = searchCount;
+            document.getElementById('lastUsed').textContent = lastSearchTime;
+            
+            // Guardar en memoria (no localStorage por restricciones)
+            window.appStats = {
+                searchCount,
+                lastSearchTime
+            };
+        }
+
+        function loadStats() {
+            // Cargar desde memoria si existe
+            if (window.appStats) {
+                searchCount = window.appStats.searchCount || 0;
+                lastSearchTime = window.appStats.lastSearchTime || '--';
+                
+                document.getElementById('searchCount').textContent = searchCount;
+                document.getElementById('lastUsed').textContent = lastSearchTime;
+            }
+        }
     </script>
-
 </body>
 </html>
