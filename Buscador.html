@@ -75,20 +75,7 @@
     <!-- Tab Contents -->
     <div class="tab-content mt-3">
       <!-- Cargar -->
-      <div class="tab-pane fade show active" id="cargar">
-        <div class="card mb-3 p-3">
-          <h5>1.- Cargar desde archivo local</h5>
-          <input type="file" id="csvFileInput" accept=".csv" class="form-control mb-2"/>
-          <button class="btn btn-primary mb-3" onclick="leerCSVDesdeArchivo()">Cargar CSV Local</button>
-
-          <h5>2.- Cargar desde URL o GitHub</h5>
-          <input type="text" id="csvUrlInput" placeholder="https://..." class="form-control mb-2"/>
-          <button class="btn btn-primary mb-2" onclick="leerCSVDesdeURL()">Cargar CSV desde URL</button>
-
-          <h5>3.- Cargar archivo CAJAS_OPTIMIZADA.csv desde GitHub</h5>
-          <button class="btn btn-success" onclick="cargarDesdeGitHub()">Cargar archivo de GitHub</button>
-        </div>
-      </div>
+      
 
       <!-- Visualizar -->
       <div class="tab-pane fade" id="visualizar">
@@ -115,17 +102,7 @@
       </div>
 
       <!-- Instrucciones -->
-      <div class="tab-pane fade" id="info">
-        <div class="card p-3 mt-3">
-          <h5>Cómo usar la aplicación</h5>
-          <ul>
-            <li><strong>1:</strong> Cargar archivo <code>CAJAS_OPTIMIZADA.csv</code> local o desde GitHub.</li>
-            <li><strong>2:</strong> Buscar palabras en columnas específicas.</li>
-            <li><strong>3:</strong> Mostrar u ocultar la columna <code>NOTAS</code>.</li>
-            <li><strong>4:</strong> Ver los datos en la pestaña "Visualizar Datos".</li>
-          </ul>
-        </div>
-      </div>
+ 
     </div>
   </div>
 
