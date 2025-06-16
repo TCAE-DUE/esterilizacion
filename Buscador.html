@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>COLOCAITO</title>
+
+  <!-- Bootstrap 5 CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      background-color: #121212;
+      color: #ffffff;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: url('assets/img/background2.png') no-repeat center center;
+      background-size: cover;
+      opacity: 0.2;
+      z-index: -1;
+    }
+
+    .nav-tabs .nav-link.active {
+      background-color: #0d6efd;
+      color: white;
+    }
+
+    .nav-tabs .nav-link {
+      background-color: #2c2c2c;
+      color: white;
+    }
+
+    .nav-tabs .nav-link:hover {
+      background-color: #3a3a3a;
+    }
+
+    table {
+      font-size: 0.9rem;
+    }
+
+    .table-container {
+      margin-top: 1rem;
+    }
+
+    .card {
+      background-color: #1f1f1f;
+      color: white;
+      border: 1px solid #444;
+    }
+
+    .form-check-label, .form-control, .form-select {
+      color: #000;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container py-4">
+    <h1 class="text-center mb-4">COLOCAITO HGCDN ESTERILIZACION</h1>
+
+    <!-- Nav Tabs -->
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item"><button class="nav-link active" id="cargar-tab" data-bs-toggle="tab" data-bs-target="#cargar">Cargar Archivo</button></li>
+      <li class="nav-item"><button class="nav-link" id="visualizar-tab" data-bs-toggle="tab" data-bs-target="#visualizar">Visualizar Datos</button></li>
+      <li class="nav-item"><button class="nav-link" id="info-tab" data-bs-toggle="tab" data-bs-target="#info">Instrucciones</button></li>
+    </ul>
+
+    <!-- Tab Contents -->
+    <div class="tab-content mt-3">
+      <!-- Cargar -->
+      <div class="tab-pane fade show active" id="cargar">
+        <div class="card mb-3 p-3">
+          <h5>1.- Cargar desde archivo local</h5>
+          <input type="file" id="csvFileInput" accept=".csv" class="form-control mb-2"/>
+          <button class="btn btn-primary mb-3" onclick="leerCSVDesdeArchivo()">Cargar CSV Local</button>
+
+          <h5>2.- Cargar desde URL o GitHub</h5>
+          <input type="text" id="csvUrlInput" placeholder="https://..." class="form-control mb-2"/>
+          <button class="btn btn-primary mb-2" onclick="leerCSVDesdeURL()">Cargar CSV desde URL</button>
+
+          <h5>3.- Cargar archivo CAJAS_OPTIMIZADA.csv desde GitHub</h5>
+          <button class="btn btn-success" onclick="cargarDesdeGitHub()">Cargar archivo de GitHub</button>
+        </div>
+      </div>
+
+      <!-- Visualizar -->
+      <div class="tab-pane fade" id="visualizar">
+        <div class="row g-3 align-items-center">
+          <div class="col-auto">
+            <label for="searchInput" class="form-label">Buscar:</label>
+          </div>
+          <div class="col">
+            <input type="text" id="searchInput" class="form-control" oninput="filtrarTabla()" placeholder="Palabra clave..."/>
+          </div>
+          <div class="col">
+            <select id="columnSelect" class="form-select" onchange="filtrarTabla()"></select>
+          </div>
+        </div>
+
+        <div class="form-check form-switch my-3">
+          <input class="form-check-input" type="checkbox" id="toggleColumnE" onchange="mostrarOcultarColumnaE()">
+          <label class="form-check-label" for="toggleColumnE">Mostrar columna NOTAS</label>
+        </div>
+
+        <div class="table-container">
+          <div id="output" class="table-responsive"></div>
+        </div>
+      </div>
+
+      <!-- Instrucciones -->
+      <div class="tab-pane fade" id="info">
+        <div class="card p-3 mt-3">
+          <h5>Cómo usar la aplicación</h5>
+          <ul>
+            <li><strong>1:</strong> Cargar archivo <code>CAJAS_OPTIMIZADA.csv</code> local o desde GitHub.</li>
+            <li><strong>2:</strong> Buscar palabras en columnas específicas.</li>
+            <li><strong>3:</strong> Mostrar u ocultar la columna <code>NOTAS</code>.</li>
+            <li><strong>4:</strong> Ver los datos en la pestaña "Visualizar Datos".</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Script CSV -->
+  <script>
+    let tableData = [];
+    let headers = [];
+    let showColumnE = false;
+
+    function leerCSVDesdeArchivo() {
+      const fileInput = document.getElementById('csvFileInput');
+      if (fileInput.files.length === 0) return alert('Selecciona un archivo.');
+      const reader = new FileReader();
+      reader.onload = (e) => procesarCSV(e.target.result);
+      reader.readAsText(fileInput.files[0]);
+    }
+
+    function leerCSVDesdeURL() {
+      const url = document.getElementById('csvUrlInput').value.trim();
+      if (!url) return alert('Introduce una URL válida.');
+      fetch(url).then(res => res.text()).then(procesarCSV).catch(() => alert('Error al cargar el archivo.'));
+    }
+
+    <script>
+    // Ruta del archivo CSV que estará en el mismo nivel que el index.html
+    const archivoCSVPorDefecto = 'CAJAS_OPTIMIZADA.csv';
+
+    // Llamada automática al cargar la página
+    window.addEventListener('DOMContentLoaded', () => {
+        fetch(archivoCSVPorDefecto)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('No se pudo cargar el archivo CSV por defecto.');
+                }
+                return response.text();
+            })
+            .then(csvText => {
+                procesarCSV(csvText);
+                // Cambia automáticamente a la pestaña de visualización
+                const visualizarTab = new bootstrap.Tab(document.querySelector('#visualizar-tab'));
+                visualizarTab.show();
+            })
+            .catch(error => {
+                console.error('Error al cargar CSV por defecto:', error);
+            });
+    });
+</script>
+
+
+
+    
+    function cargarDesdeGitHub() {
+      const path = 'CAJAS_OPTIMIZADA.csv'; // debe estar al mismo nivel que index.html
+      fetch(path)
+        .then(res => res.text())
+        .then(procesarCSV)
+        .catch(() => alert('No se pudo cargar el archivo desde GitHub.'));
+    }
+
+    function procesarCSV(text) {
+      const rows = text.split('\n');
+      tableData = [];
+      headers = [];
+
+      rows.forEach((row, i) => {
+        if (!row.trim()) return;
+        const cols = row.split(',');
+        if (i === 0) {
+          headers = cols.map(c => c.trim());
+          const select = document.getElementById('columnSelect');
+          select.innerHTML = headers.map((h, idx) => `<option value="${idx}">${h}</option>`).join('');
+        } else {
+          tableData.push(cols.map(c => c.trim()));
+        }
+      });
+
+      mostrarTabla(tableData);
+    }
+
+    function mostrarTabla(data) {
+      const output = document.getElementById('output');
+      let table = '<table class="table table-bordered table-hover table-dark"><thead><tr>';
+      headers.forEach((h, i) => {
+        if (i !== 4 || showColumnE) table += `<th>${h}</th>`;
+      });
+      table += '</tr></thead><tbody>';
+      data.forEach(row => {
+        table += '<tr>';
+        row.forEach((col, i) => {
+          if (i !== 4 || showColumnE) table += `<td>${col}</td>`;
+        });
+        table += '</tr>';
+      });
+      table += '</tbody></table>';
+      output.innerHTML = table;
+    }
+
+    function filtrarTabla() {
+      const term = document.getElementById('searchInput').value.toLowerCase();
+      const col = document.getElementById('columnSelect').value;
+      if (!tableData.length) return;
+      const filtered = tableData.filter(row => row[col].toLowerCase().includes(term));
+      mostrarTabla(filtered);
+    }
+
+    function mostrarOcultarColumnaE() {
+      showColumnE = document.getElementById('toggleColumnE').checked;
+      filtrarTabla();
+    }
+  </script>
+</body>
+</html>
