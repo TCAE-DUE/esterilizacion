@@ -152,36 +152,8 @@
       fetch(url).then(res => res.text()).then(procesarCSV).catch(() => alert('Error al cargar el archivo.'));
     }
 
-    <script>
-    // Ruta del archivo CSV que estará en el mismo nivel que el index.html
-    const archivoCSVPorDefecto = 'CAJAS_OPTIMIZADA.csv';
-
-    // Llamada automática al cargar la página
-    window.addEventListener('DOMContentLoaded', () => {
-        fetch(archivoCSVPorDefecto)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('No se pudo cargar el archivo CSV por defecto.');
-                }
-                return response.text();
-            })
-            .then(csvText => {
-                procesarCSV(csvText);
-                // Cambia automáticamente a la pestaña de visualización
-                const visualizarTab = new bootstrap.Tab(document.querySelector('#visualizar-tab'));
-                visualizarTab.show();
-            })
-            .catch(error => {
-                console.error('Error al cargar CSV por defecto:', error);
-            });
-    });
-</script>
-
-
-
-    
     function cargarDesdeGitHub() {
-      const path = 'CAJAS_OPTIMIZADA.csv'; // debe estar al mismo nivel que index.html
+      const path = 'CAJAS_OPTIMIZADA.csv';
       fetch(path)
         .then(res => res.text())
         .then(procesarCSV)
@@ -238,11 +210,24 @@
       showColumnE = document.getElementById('toggleColumnE').checked;
       filtrarTabla();
     }
-  // Ejecutar automáticamente al cargar la página
-window.addEventListener('DOMContentLoaded', () => {
-    cargarDesdeGitHub();
-});
+
+    // Cargar automáticamente al iniciar
+    window.addEventListener('DOMContentLoaded', () => {
+      const archivoCSVPorDefecto = 'CAJAS_OPTIMIZADA.csv';
+      fetch(archivoCSVPorDefecto)
+        .then(response => {
+          if (!response.ok) throw new Error('No se pudo cargar el archivo CSV por defecto.');
+          return response.text();
+        })
+        .then(csvText => {
+          procesarCSV(csvText);
+          const visualizarTab = new bootstrap.Tab(document.querySelector('#visualizar-tab'));
+          visualizarTab.show();
+        })
+        .catch(error => {
+          console.error('Error al cargar CSV por defecto:', error);
+        });
+    });
   </script>
-  
 </body>
 </html>
