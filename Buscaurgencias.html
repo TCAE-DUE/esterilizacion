@@ -479,6 +479,26 @@
             }
         };
 
+
+const imagenesPorItem = {
+  "MANO": "caja.html",
+  "MUÑECA EXPERT (newclip) o APTUS RADIO (CPL) o LOQTEC RADIO DISTAL": "https://drive.google.com/tu-link-muneca-expert.jpg",
+  "MOTOR SOLICITADO POR QUIRÓFANO": "https://drive.google.com/tu-link-motor-quirófano.jpg",
+  "SET DESECHABLE PENNING MUÑECA DE ORTHOFIX (UBICADO EN QNO)": "https://drive.google.com/tu-link-set-penning.jpg",
+  "TRAUMA PEQUEÑA": "https://drive.google.com/tu-link-trauma-pequeña.jpg",
+  "TORNILLOS TITANIO O EVOS 1A 1B 1C Y 1D o LOQTEC PLACAS RECTAS": "https://drive.google.com/tu-link-tornillos-titanio.jpg",
+  "TOBILLO GALAXY 1 o 2 o GALAXY 2 (miembro inferior) + CAJA ORTHOFIX IMPLANTES Y TORNILLOS 1 o 2 (estas cajas tienen los PINES)": "https://drive.google.com/tu-link-tobillo-galaxy.jpg",
+  "BERBIEQUÍ Y CORTATORNILLOS": "https://drive.google.com/tu-link-berbiequi.jpg",
+  "ENDER O KUNTSCHER": "https://drive.google.com/tu-link-ender-kuntscher.jpg",
+  "GALAXY 1A Y 1B (miembro superior e inferior) o ORTHOFIX PÉLVICO": "https://drive.google.com/tu-link-galaxy-orthofix.jpg",
+  "ORTHOFIX IMPLANTES Y TORNILLOS 1 o 2 (estas cajas tienen los PINES)": "https://drive.google.com/tu-link-implantes-tornillos.jpg",
+  "TRAUMA GRANDE": "https://drive.google.com/tu-link-trauma-grande.jpg",
+  "COMPLEMENTO PARCIAL PRÓTESIS": "https://drive.google.com/tu-link-complemento-protesis.jpg",
+  "PRÓTESIS PARCIAL CADERA EUROMED (3 JUEGOS)": "https://drive.google.com/tu-link-protesis-cadera.jpg",
+  "MOTOR PROTECTRAUMA/MOTOR CON SIERRA": "https://drive.google.com/tu-link-motor-protectrauma.jpg",
+  // ... Puedes seguir agregando según cada item que tengas
+};
+
         // Variables de estado
         let searchCount = 0;
         let lastSearchTime = null;
@@ -533,22 +553,146 @@
             }, 500);
         }
 
-        function realizarBusqueda(termino) {
-            const resultDiv = document.getElementById('result');
-            const resultado = data[termino];
+        // function realizarBusqueda(termino) {
+        //     const resultDiv = document.getElementById('result');
+        //     const resultado = data[termino];
 
-            if (resultado) {
-                mostrarResultados(resultado, termino);
-            } else {
-                // Búsqueda parcial
-                const coincidencias = buscarCoincidencias(termino);
-                if (coincidencias.length > 0) {
-                    mostrarCoincidenciasParciales(coincidencias);
-                } else {
-                    mostrarSinResultados(termino);
-                }
-            }
+        //     if (resultado) {
+        //         mostrarResultados(resultado, termino);
+        //     } else {
+        //         // Búsqueda parcial
+        //         const coincidencias = buscarCoincidencias(termino);
+        //         if (coincidencias.length > 0) {
+        //             mostrarCoincidenciasParciales(coincidencias);
+        //         } else {
+        //             mostrarSinResultados(termino);
+        //         }
+        //     }
+        // }
+        function realizarBusqueda(termino) {
+    const resultDiv = document.getElementById('result');
+    const resultado = data[termino];
+
+    if (resultado) {
+        // Mostrar resultados exactos con capacidad de abrir imágenes
+        mostrarResultados(resultado, termino);
+    } else {
+        // Búsqueda parcial con coincidencias aproximadas
+        const coincidencias = buscarCoincidencias(termino);
+        if (coincidencias.length > 0) {
+            mostrarCoincidenciasParciales(coincidencias);
+        } else {
+            mostrarSinResultados(termino);
         }
+    }
+}
+
+// Función auxiliar para mostrar resultados con imágenes
+function mostrarResultados(resultado, termino) {
+    const resultDiv = document.getElementById('result');
+    
+    let html = `
+        <div class="fade-in">
+            <h4><i class="fas fa-check-circle text-success"></i> Resultados para: <strong>${termino.toUpperCase()}</strong></h4>
+            <div class="badge bg-info mb-3">${resultado.categoria}</div>
+            <div class="result-items">
+    `;
+
+    resultado.cajas.forEach((caja) => {
+        const imagenURL = imagenesPorItem[caja] || null;
+        const cajaHTML = imagenURL 
+            ? `<a href="${imagenURL}" target="_blank" class="text-decoration-none link-imagen" 
+               title="Ver imagen de la caja quirúrgica">${caja}</a>`
+            : caja;
+
+        html += `
+            <div class="result-item">
+                <i class="fas fa-box text-primary me-2"></i>
+                ${cajaHTML.replace(/\n/g, "<br>")}
+            </div>
+        `;
+    });
+
+    if (resultado.pack && resultado.pack !== "PACK ∅") {
+        html += `
+            <div class="pack-info">
+                <i class="fas fa-exclamation-triangle"></i>
+                <strong>${resultado.pack}</strong>
+            </div>
+        `;
+    }
+
+    html += '</div></div>';
+    resultDiv.innerHTML = html;
+    
+    // Añadir estilos para los enlaces de imágenes
+    const style = document.createElement('style');
+    style.textContent = `
+        .link-imagen {
+            color: var(--primary-color);
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+        .link-imagen:hover {
+            color: #1d4ed8;
+            text-decoration: underline;
+        }
+    `;
+    document.head.appendChild(style);
+}
+
+// Función de búsqueda de coincidencias (sin cambios)
+function buscarCoincidencias(termino) {
+    const coincidencias = [];
+    for (const [key, value] of Object.entries(data)) {
+        if (key.includes(termino) || termino.split(' ').some(palabra => key.includes(palabra))) {
+            coincidencias.push({ key, value });
+        }
+    }
+    return coincidencias;
+}
+
+// Función para mostrar coincidencias parciales (sin cambios)
+function mostrarCoincidenciasParciales(coincidencias) {
+    const resultDiv = document.getElementById('result');
+    
+    let html = `
+        <div class="fade-in">
+            <h4><i class="fas fa-search text-warning"></i> Coincidencias encontradas (${coincidencias.length})</h4>
+            <p class="text-muted">Se encontraron los siguientes procedimientos similares:</p>
+    `;
+
+    coincidencias.forEach(({key, value}) => {
+        html += `
+            <div class="result-item" style="cursor: pointer;" onclick="copiarTexto('${key}')">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <strong>${key.toUpperCase()}</strong>
+                        <div class="badge bg-secondary ms-2">${value.categoria}</div>
+                    </div>
+                    <i class="fas fa-chevron-right text-muted"></i>
+                </div>
+            </div>
+        `;
+    });
+
+    html += '</div>';
+    resultDiv.innerHTML = html;
+}
+
+// Función para mostrar cuando no hay resultados (sin cambios)
+function mostrarSinResultados(termino) {
+    const resultDiv = document.getElementById('result');
+    resultDiv.innerHTML = `
+        <div class="no-results fade-in">
+            <i class="fas fa-search-minus"></i>
+            <h4>No se encontraron resultados</h4>
+            <p>No se encontraron cajas quirúrgicas para "<strong>${termino}</strong>".</p>
+            <p class="text-muted">Intente con términos como: muñeca, tobillo, pelvis, cadera, etc.</p>
+        </div>
+    `;
+    mostrarSugerenciasCompletas();
+}
 
         function buscarCoincidencias(termino) {
             const coincidencias = [];
@@ -560,37 +704,69 @@
             return coincidencias;
         }
 
-        function mostrarResultados(resultado, termino) {
-            const resultDiv = document.getElementById('result');
-            
-            let html = `
-                <div class="fade-in">
-                    <h4><i class="fas fa-check-circle text-success"></i> Resultados para: <strong>${termino.toUpperCase()}</strong></h4>
-                    <div class="badge bg-info mb-3">${resultado.categoria}</div>
-                    <div class="result-items">
-            `;
+       function mostrarResultados(resultado, termino) {
+    const resultDiv = document.getElementById('result');
+    
+    let html = `
+        <div class="fade-in">
+            <h4><i class="fas fa-check-circle text-success"></i> Resultados para: <strong>${termino.toUpperCase()}</strong></h4>
+            <div class="badge bg-info mb-3">${resultado.categoria}</div>
+            <div class="result-items">
+    `;
 
-            resultado.cajas.forEach((caja, index) => {
-                html += `
-                    <div class="result-item">
-                        <i class="fas fa-box text-primary me-2"></i>
-                        ${caja.replace(/\n/g, "<br>")}
-                    </div>
-                `;
-            });
+    resultado.cajas.forEach((caja) => {
+        // Primero procesamos los saltos de línea
+        const cajaConSaltos = caja.replace(/\n/g, "<br>");
+        
+        // Luego verificamos si hay imagen
+        const imagenURL = imagenesPorItem[caja] || null;
+        
+        // Creamos el contenido HTML adecuadamente
+        const cajaHTML = imagenURL 
+            ? `<a href="${imagenURL}" target="_blank" class="text-decoration-none link-imagen" 
+               title="Ver imagen de la caja quirúrgica">${cajaConSaltos}</a>`
+            : cajaConSaltos;
 
-            if (resultado.pack && resultado.pack !== "PACK ∅") {
-                html += `
-                    <div class="pack-info">
-                        <i class="fas fa-exclamation-triangle"></i>
-                        <strong>${resultado.pack}</strong>
-                    </div>
-                `;
-            }
+        html += `
+            <div class="result-item">
+                <i class="fas fa-box text-primary me-2"></i>
+                ${cajaHTML}
+            </div>
+        `;
+    });
 
-            html += '</div></div>';
-            resultDiv.innerHTML = html;
+    if (resultado.pack && resultado.pack !== "PACK ∅") {
+        html += `
+            <div class="pack-info">
+                <i class="fas fa-exclamation-triangle"></i>
+                <strong>${resultado.pack}</strong>
+            </div>
+        `;
+    }
+
+    html += '</div></div>';
+    resultDiv.innerHTML = html;
+    
+    // Añadir estilos para los enlaces de imágenes
+    const style = document.createElement('style');
+    style.textContent = `
+        .link-imagen {
+            color: var(--primary-color);
+            font-weight: 500;
+            transition: all 0.2s ease;
+            cursor: pointer;
         }
+        .link-imagen:hover {
+            color: #1d4ed8;
+            text-decoration: underline;
+        }
+        .result-item a {
+            display: inline-block;
+            width: 100%;
+        }
+    `;
+    document.head.appendChild(style);
+}
 
         function mostrarCoincidenciasParciales(coincidencias) {
             const resultDiv = document.getElementById('result');
