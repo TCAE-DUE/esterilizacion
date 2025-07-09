@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sistema de Cajas Quirúrgicas - Vista con Tabs</title>
+    <!-- Preconexión para mejorar rendimiento -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <!-- Font Awesome con integridad SRI -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/styles.css">
+    <style>
+      .btn-warning:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
+      }
+      /* Optimización tablas */
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-family: Arial, sans-serif;
+      }
+      th, td {
+        padding: 8px;
+      }
+      thead {
+        background-color: #f2f2f2;
+      }
+      th[style*="width:5%"], 
+      td[style*="text-align:center"] {
+        text-align: center;
+      }
+    </style>
+</head>
+<body>
+  <div class="main-container p-4">
+    <!-- Botón configurable -->
+    <a href="../Buscaurgencias.html" class="btn btn-warning position-relative px-4 py-2 shadow-sm mb-4">
+      <i class="fas fa-house-user me-2"></i>INICIO
+    </a>
+
+    <h2 class="mb-4"><i class="fas fa-medical-kit"></i> Caja de: CODO <span style='color:red;'>NEWCLIP</span></h2>
+
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="tab-superior" data-bs-toggle="tab" data-bs-target="#table-tab-pane1" type="button" role="tab" aria-controls="table-tab-pane1" aria-selected="true">
+          <i class="fas fa-table me-2"></i>BANDEJA SUPERIOR
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="tab-inferior" data-bs-toggle="tab" data-bs-target="#table-tab-pane2" type="button" role="tab" aria-controls="table-tab-pane2" aria-selected="false">
+          <i class="fas fa-table me-2"></i>BANDEJA INFERIOR
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="tab-media1" data-bs-toggle="tab" data-bs-target="#table-tab-pane3" type="button" role="tab" aria-controls="table-tab-pane3" aria-selected="false">
+          <i class="fas fa-table me-2"></i>BANEJA MEDIA "A"
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="tab-media2" data-bs-toggle="tab" data-bs-target="#table-tab-pane4" type="button" role="tab" aria-controls="table-tab-pane4" aria-selected="false">
+          <i class="fas fa-table me-2"></i>BANEJA MEDIA "B"
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="tab-fotos" data-bs-toggle="tab" data-bs-target="#photos-tab-pane" type="button" role="tab" aria-controls="photos-tab-pane" aria-selected="false">
+          <i class="fas fa-images me-2"></i>Fotos
+        </button>
+      </li>
+    </ul>
+
+    <div class="tab-content mt-3" id="myTabContent">
+      <!-- BANDEJA SUPERIOR -->
+      <div class="tab-pane fade" id="table-tab-pane2" role="tabpanel" aria-labelledby="tab-superior">
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th style="width:5%">Nº</th>
+                <th style="width:10%">Cantidad</th>
+                <th style="width:55%">Nombre</th>
+                <th style="width:30%">Referencia</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>1</td><td>1</td><td>DOBLADORES DE PLACAS</td><td>REF. ANC 452 15-06</td></tr>
+              <tr><td>2</td><td>2</td><td>PINZA MALEOLAR</td><td>REF ANC 345 21-2716</td></tr>
+              <tr><td>3</td><td>3</td><td>PINZA DE REDUCCIÓN</td><td>REF. ANC 348 19-5483</td></tr>
+              <tr><td>4</td><td>4</td><td>VERBRELGEN</td><td>REF. ANC 344 19-1814</td></tr>
+              <tr><td>5</td><td>5</td><td>MANGO AZUL</td><td>REF. 652346-025</td></tr>
+              <tr><td>9</td><td>9</td><td>MANGO AO 4,5MM</td><td>REF. ANC 350 21-7386</td></tr>
+              <tr><td>10</td><td>10</td><td>MANGO AO 4,5MM</td><td>REF. ANC 351 13-02</td></tr>
+              <tr><td>11</td><td>11</td><td>GUÍA REDUCTORA DE PINES DE 2,3MM</td><td>REF. ANC 309 21-3281</td></tr>
+              <tr><td>12</td><td>12</td><td>AGUJAS DE KIRSNHNER DE 2,0MM</td><td></td></tr>
+              <tr><td>13</td><td>13</td><td>AGUJAS DE KIRSNHNER DE 1,6 MM</td><td></td></tr>
+              <tr><td>6</td><td>6</td><td>PLACAS DE CODO EN Y DERECHAS</td><td></td></tr>
+              <tr><td>7</td><td>7</td><td>PLACAS DE CODO EN Y IZQUIERDAS</td><td></td></tr>
+              <tr><td>8</td><td>8</td><td>EXPOSITOR DE TORNILLOS</td><td></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- BANDEJA INFERIOR -->
+      <div class="tab-pane fade show active" id="table-tab-pane1" role="tabpanel" aria-labelledby="tab-inferior">
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>FOTO</th>
+                <th style="width:5%">Nº</th>
+                <th>NOMBRE</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>1</td><td>1</td><td>5 PLACAS LATERALES IZQUIERDAS</td></tr>
+              <tr><td>2</td><td>2</td><td>5 PLACAS LATERALES DERECHAS</td></tr>
+              <tr><td>3</td><td>3</td><td>4 PLACAS MEDIALES</td></tr>
+              <tr><td>4</td><td>4</td><td>5 PLACAS POSTEROLATERALES DERECHAS</td></tr>
+              <tr><td>5</td><td>5</td><td>5 PLACAS POSTEROLATERALES IZQUIERAS</td></tr>
+              <tr><td>6</td><td>6</td><td>5 GUÍAS RÁPIDAS</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+<!-- BANDEJA MEDIA A -->
+      <div class="tab-pane fade" id="table-tab-pane3" role="tabpanel" aria-labelledby="tab-media1">
+        <div class="table-responsive">
+          <table>
+            <thead>
+             <tr>
+      <th>FOTO</th>
+      <th>Nº</th>
+      <th>NOMBRE</th>
+      <th>REFERENCIA</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td><td>1</td><td>MEDIDOR DE PROFUNDIDAD DE TORNILLOS DE 3,5MM</td><td>ANC124L 13-04</td>
+    </tr>
+    <tr>
+      <td>2</td><td>2</td><td>GUÍAS DE TORNILLOS BLOQUEADOS DE 2,7 MM</td><td>ANC 259E 13-09 Y ANC259E 14-01</td>
+    </tr>
+    <tr><td>2</td><td>2</td><td>BROCAS DE 2,7MM</td><td>ANC 256E</td>
+    </tr>
+    <tr>
+      <td>1</td><td>1</td> <td>GUÍA DE TORNILLOS NO BLOQUEADOS DE 2,7MM</td>
+      <td>ANC 261E</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>1</td>
+      <td>DESTORNILLADOR DE 2,0MM</td>
+      <td>ANC 082E 13-09</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>2</td>
+      <td>DESTORNILLADORES DE 2,5MM</td>
+      <td>ANC083CM 14-02</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>1</td>
+      <td>AVELLANADOR DE 3,5 MM</td>
+      <td>ANC463-21-1124</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>1</td>
+      <td>LLAVE HEXAGONAL DE 2,5MM</td>
+      <td>ANC107 19-1638</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>1</td>
+      <td>SUJETADOR DE GUÍA RÁPIDA</td>
+      <td>ANC160 14-04</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>1</td>
+      <td>LLAVE HEXAGONAL DE 2,0MM</td>
+      <td>ANC 103 14-03A</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>2</td>
+      <td>BROCAS DE 2,3MM</td>
+      <td>ANC 287</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>1</td>
+      <td>GUÍA PARA TORNILLOS NO BLOQUEADOS DE 2,3MM</td>
+      <td>ANC 306 14-01</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>2</td>
+      <td>GUÍAS PARA BROCA POLIAXIAL DE 2,3MM</td>
+      <td>ANC 305 13-09 Y ANC 305 14-01</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>1</td>
+      <td>MEDIDOR DE PROFUNDIDAD DE TORNILLOS DE 2,8 MM</td>
+      <td></td>
+    </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!-- BANDEJA MEDIA B -->
+      <div class="tab-pane fade" id="table-tab-pane4" role="tabpanel" aria-labelledby="tab-media2">
+        <div class="table-responsive">
+          <table>
+            <thead>
+            <tr>
+      <th style="width:10%; text-align:center">FOTO</th>
+      <th style="width:10%; text-align:center">Nº</th>
+      <th style="width:60%">NOMBRE</th>
+      <th style="width:20%">REFERENCIA</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>1</td><td>1</td><td>ATORNILLADOR HEXAGONAL DE 2,0MM</td><td>REF. ANC 463 14-05</td></tr>
+    <tr><td>2</td><td>2</td><td>GUÍA DE BROCA DE 2,7MM</td><td>REF. ANC 186 11-10</td></tr>
+    <tr><td>3</td><td>3</td><td>GUÍA PARA TORNILLOS DE 2,3MM</td><td></td></tr>
+    <tr><td>4</td><td>4</td><td>GUÍA DE BROCA DE 2,7 MM</td><td>REF. ANC 191</td></tr>
+    <tr><td>5</td><td>5</td><td>GUÍA DE BROCA DE 2,3 MM</td><td>REF. ANC 493-21-0808</td></tr>
+    <tr><td>6</td><td>6</td><td>ATORNILLADOR HEXAGONAL DE 2,5MM</td><td>REF. ANC 83C 13-088</td></tr>
+    <tr><td>7</td><td>7</td><td>AVELLANADOR DE 3,5MM</td><td>REF. ANC 082E 14-01</td></tr>
+    <tr><td>8</td><td>8</td><td>BROCA DE 2,3 MM Y LARGO 180MM</td><td>REF. ANC498-02 1625</td></tr>
+    <tr><td>9</td><td>9</td><td>BROCA DE 2,5MM</td><td>REF. ANC 087</td></tr>
+    <tr><td>10</td><td>10</td><td>PLACAS DE OLECRANON IZQUIERDAS</td><td></td></tr>
+    <tr><td>11</td><td>11</td><td>PLACAS OLECRANON MEDIALES</td><td></td></tr>
+    <tr><td>12</td><td>12</td><td>PLACAS OLECRANON DERECHAS</td><td></td></tr>
+  </tbody>
+          </table>
+        </div>
+      </div>
+      <!-- GALERÍA DE FOTOS -->
+      <div class="tab-pane fade" id="photos-tab-pane" role="tabpanel" aria-labelledby="tab-fotos">
+        <div class="gallery-container">
+          <div class="photo-card">
+            <a href="https://drive.google.com/uc?export=view&id=1GGB0mPuv1_-OdE2vmF5XxcM4w_G4kCOh" target="_blank" rel="noopener noreferrer">
+              <img src="https://media.giphy.com/media/3o7TKsrf0g3n53ZQd2/giphy.gif"
+                   alt="Contenido de la caja MANO"
+                   loading="lazy"
+                   onerror="this.src='https://via.placeholder.com/400x300?text=Imagen+no+disponible'">
+            </a>
+            <div class="caption">
+              <h5>Vista general</h5>
+              <p class="text-muted">Haz clic para ver en alta resolución</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS con SRI -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+
+  <script>
+    // Script optimizado
+    document.addEventListener('DOMContentLoaded', function() {
+      var triggerTabList = [].slice.call(document.querySelectorAll('#myTab button'));
+      triggerTabList.forEach(function(triggerEl) {
+        triggerEl.addEventListener('click', function(event) {
+          event.preventDefault();
+          new bootstrap.Tab(triggerEl).show();
+        });
+      });
+    });
+  </script>
+</body>
+</html>

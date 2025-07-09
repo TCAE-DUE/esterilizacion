@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sistema de Cajas Quirúrgicas - Vista con Tabs</title>
+    <!-- Preconexión para mejorar rendimiento -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <!-- Font Awesome con integridad SRI -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/styles.css">
+    <style>
+      .btn-warning:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
+      }
+      /* Optimización tablas */
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-family: Arial, sans-serif;
+      }
+      th, td {
+        padding: 8px;
+      }
+      thead {
+        background-color: #f2f2f2;
+      }
+      th[style*="width:5%"], 
+      td[style*="text-align:center"] {
+        text-align: center;
+      }
+    </style>
+</head>
+<body>
+  <div class="main-container p-4">
+    <!-- Botón configurable -->
+    <a href="../Buscaurgencias.html" class="btn btn-warning position-relative px-4 py-2 shadow-sm mb-4">
+      <i class="fas fa-house-user me-2"></i>INICIO
+    </a>
+
+    <h2 class="mb-4"><i class="fas fa-medical-kit"></i> Caja: LOQTEC HUMERO MEDIAL Y DORSO LATERAL  <span style='color:red;'>HUMERO DISTAL</span></h2>
+
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="tab-inferior" data-bs-toggle="tab" data-bs-target="#table-tab-pane1" type="button" role="tab" aria-controls="table-tab-pane1" aria-selected="true">
+          <i class="fas fa-table me-2"></i>BANDEJA INFERIOR
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="tab-superior" data-bs-toggle="tab" data-bs-target="#table-tab-pane2" type="button" role="tab" aria-controls="table-tab-pane1" aria-selected="true">
+          <i class="fas fa-table me-2"></i>BANDEJA SUPERIOR
+        </button>
+      </li>
+              
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="tab-fotos" data-bs-toggle="tab" data-bs-target="#photos-tab-pane" type="button" role="tab" aria-controls="photos-tab-pane" aria-selected="false">
+          <i class="fas fa-images me-2"></i>Fotos
+        </button>
+      </li>
+    </ul>
+
+    <div class="tab-content mt-3" id="myTabContent">
+      <!-- BANDEJA INFERIOR -->
+      <div class="tab-pane fade show active" id="table-tab-pane1" role="tabpanel" aria-labelledby="tab-superior">
+        <div class="table-responsive">
+          <table>
+  <thead>
+    <tr>
+      <th>FOTO</th>
+      <th>Nº</th>
+      <th>NOMBRE</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>5</td>
+      <td>PLACAS DORSOLATERAL DERECHA (1 DE 2, 3, 5, 7 Y 11 AGUJEROS)</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>5</td>
+      <td>PLACAS MEDIAL DERECHA (1 DE 2, 3, 5, 7 Y 11 AGUJEROS)</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>5</td>
+      <td>PLACAS MEDIAL IZQUIERDA (1 DE 2, 3, 5, 7 Y 11 AGUJEROS)</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>5</td>
+      <td>PLACAS DORSOLATERAL IZQUIERDA (1 DE 2, 3, 5, 7 Y 11 AGUJEROS)</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>1</td>
+      <td>EXPOSITOR DE TORNILLOS CORTICAL 2,5 MM Y TORNILLOS ÁNGULO ESTABLE 2,7 MM</td>
+    </tr>
+  </tbody>
+</table>
+        </div>
+      </div>
+
+       <!-- BANDEJA SUPERIOR-->
+      <div class="tab-pane fade" id="table-tab-pane2" role="tabpanel" aria-labelledby="tab-superior">
+        <div class="table-responsive">
+          <table>
+            <thead>
+    <tr>
+      <th>FOTO</th>
+      <th>Nº</th>
+      <th>NOMBRE</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>1</td>
+      <td>GUÍA HÚMERO DISTAL IU-8179-00</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>1</td>
+      <td>GUÍA PARA BROCA IU-8125-00</td>
+    </tr>
+    <tr>
+      <td>3,4</td>
+      <td>2</td>
+      <td>DESTORNILLADORES IU-7815-56</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>1</td>
+      <td>MANGO DESTORNILLADOR IU-7707-00</td>
+    </tr>
+    <tr>
+      <td>6,7,8</td>
+      <td>3</td>
+      <td>BROCAS DE 2MM Y 2,7MM</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>1</td>
+      <td>MEDIDOR DE TORNILLOS IU-7903-00</td>
+    </tr>
+    <tr>
+      <td>10,11</td>
+      <td>2</td>
+      <td>GUÍAS DE BROCA T. BLOQUEADOS IU-8169-20</td>
+    </tr>
+  </tbody>
+</table>
+        </div>
+      </div>
+
+     
+      <!-- GALERÍA DE FOTOS -->
+<div class="tab-pane fade" id="photos-tab-pane" role="tabpanel" aria-labelledby="tab-fotos">
+  <div class="row g-3">
+    <!-- Tarjeta de imagen -->
+    <div class="col-12 col-md-4">
+      <figure class="card h-100 shadow-sm">
+        <a href="https://res.cloudinary.com/dp4xc07e4/image/upload/v1751924786/humero_medial_1_itylti.png"
+           target="_blank" rel="noopener noreferrer">
+          <img src="https://res.cloudinary.com/dp4xc07e4/image/upload/v1751924786/humero_medial_1_itylti.png"
+               alt="Vista general del contenido de la caja MANO"
+               class="card-img-top"
+               loading="lazy"
+               onerror="this.src='https://via.placeholder.com/400x300?text=Imagen+no+disponible'">
+        </a>
+        <figcaption class="card-body p-2">
+          <h6 class="card-title mb-1">BANDEJA INFERIOR</h6>
+          <p class="card-text text-muted mb-0">Haz clic para ver en alta resolución</p>
+        </figcaption>
+      </figure>
+    </div>
+
+    <!-- Repetir la tarjeta para otras imágenes -->
+    <div class="col-12 col-md-4">
+      <figure class="card h-100 shadow-sm">
+        <a href="https://res.cloudinary.com/dp4xc07e4/image/upload/v1751924786/humero_medial_2_bldg2n.png"
+           target="_blank" rel="noopener noreferrer">
+          <img src="https://res.cloudinary.com/dp4xc07e4/image/upload/v1751924786/humero_medial_2_bldg2n.png"
+               alt="Vista general del contenido de la caja MANO"
+               class="card-img-top"
+               loading="lazy"
+               onerror="this.src='https://via.placeholder.com/400x300?text=Imagen+no+disponible'">
+        </a>
+        <figcaption class="card-body p-2">
+          <h6 class="card-title mb-1">BANDEJA INFERIOR</h6>
+          <p class="card-text text-muted mb-0">Haz clic para ver en alta resolución</p>
+        </figcaption>
+      </figure>
+    </div>
+    <div class="col-12 col-md-4">
+      <figure class="card h-100 shadow-sm">
+        <a href="https://res.cloudinary.com/dp4xc07e4/image/upload/v1751925640/humero_medial_5_nnmmci.png"
+           target="_blank" rel="noopener noreferrer">
+          <img src="https://res.cloudinary.com/dp4xc07e4/image/upload/v1751925640/humero_medial_5_nnmmci.png"
+               alt="Vista general del contenido de la caja MANO"
+               class="card-img-top"
+               loading="lazy"
+               onerror="this.src='https://via.placeholder.com/400x300?text=Imagen+no+disponible'">
+        </a>
+        <figcaption class="card-body p-2">
+          <h6 class="card-title mb-1">BANDEJA INFERIOR</h6>
+          <p class="card-text text-muted mb-0">Haz clic para ver en alta resolución</p>
+        </figcaption>
+      </figure>
+    </div>
+
+    <div class="col-12 col-md-4">
+      <figure class="card h-100 shadow-sm">
+        <a href="https://res.cloudinary.com/dp4xc07e4/image/upload/v1751924786/humero_medial_3_iotir4.png"
+           target="_blank" rel="noopener noreferrer">
+          <img src="https://res.cloudinary.com/dp4xc07e4/image/upload/v1751924786/humero_medial_3_iotir4.png"
+               alt="Vista general del contenido de la caja MANO"
+               class="card-img-top"
+               loading="lazy"
+               onerror="this.src='https://via.placeholder.com/400x300?text=Imagen+no+disponible'">
+        </a>
+        <figcaption class="card-body p-2">
+          <h6 class="card-title mb-1">BANDEJA INFERIOR</h6>
+          <p class="card-text text-muted mb-0">Haz clic para ver en alta resolución</p>
+        </figcaption>
+      </figure>
+    </div>
+    <div class="col-12 col-md-4">
+      <figure class="card h-100 shadow-sm">
+        <a href="https://res.cloudinary.com/dp4xc07e4/image/upload/v1751924786/humero_medial_4_ijw4td.png"
+           target="_blank" rel="noopener noreferrer">
+          <img src="https://res.cloudinary.com/dp4xc07e4/image/upload/v1751924786/humero_medial_4_ijw4td.png"
+               alt="Vista general del contenido de la caja MANO"
+               class="card-img-top"
+               loading="lazy"
+               onerror="this.src='https://via.placeholder.com/400x300?text=Imagen+no+disponible'">
+        </a>
+        <figcaption class="card-body p-2">
+          <h6 class="card-title mb-1">BANDEJA SUPERIOR</h6>
+          <p class="card-text text-muted mb-0">Haz clic para ver en alta resolución</p>
+        </figcaption>
+      </figure>
+    </div>
+    <div class="col-12 col-md-4">
+      <figure class="card h-100 shadow-sm">
+        <a href="https://res.cloudinary.com/dp4xc07e4/image/upload/v1751925640/humero_medial_6_kyfmgy.png"
+           target="_blank" rel="noopener noreferrer">
+          <img src="https://res.cloudinary.com/dp4xc07e4/image/upload/v1751925640/humero_medial_6_kyfmgy.png"
+               alt="Vista general del contenido de la caja MANO"
+               class="card-img-top"
+               loading="lazy"
+               onerror="this.src='https://via.placeholder.com/400x300?text=Imagen+no+disponible'">
+        </a>
+        <figcaption class="card-body p-2">
+          <h6 class="card-title mb-1">BANDEJA SUPERIOR</h6>
+          <p class="card-text text-muted mb-0">Haz clic para ver en alta resolución</p>
+        </figcaption>
+      </figure>
+    </div>
+    
+  </div>
+</div>
+
+    </div>
+  </div>
+
+  <!-- Bootstrap JS con SRI -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+
+  <script>
+    // Script optimizado
+    document.addEventListener('DOMContentLoaded', function() {
+      var triggerTabList = [].slice.call(document.querySelectorAll('#myTab button'));
+      triggerTabList.forEach(function(triggerEl) {
+        triggerEl.addEventListener('click', function(event) {
+          event.preventDefault();
+          new bootstrap.Tab(triggerEl).show();
+        });
+      });
+    });
+  </script>
+</body>
+</html>

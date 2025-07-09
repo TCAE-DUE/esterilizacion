@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sistema de Cajas Quirúrgicas - {{TÍTULO}}</title>
+
+  <!-- Preconexión -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous">
+
+  <!-- Estilos propios -->
+  <link rel="stylesheet" href="../static/styles.css">
+
+  <style>
+    .btn-warning:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: Arial, sans-serif;
+    }
+
+    th, td {
+      padding: 8px;
+    }
+
+    thead {
+      background-color: #f2f2f2;
+    }
+
+    th[style*="width:5%"],
+    td[style*="text-align:center"] {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="main-container p-4">
+    <a href="../Buscaurgencias.html" class="btn btn-warning position-relative px-4 py-2 shadow-sm mb-4">
+      <i class="fas fa-house-user me-2"></i>INICIO
+    </a>
+
+    <h2 class="mb-4">
+      <i class="fas fa-medical-kit"></i> Caja: <span class="text-danger fw-bold">Caja: MANO</span>
+    </h2>
+
+    <!-- Tabs -->
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="tab-superior" data-bs-toggle="tab" data-bs-target="#table-tab-pane1" type="button" role="tab" aria-controls="table-tab-pane1" aria-selected="true">
+          <i class="fas fa-table me-2"></i>BANDEJA
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="tab-fotos" data-bs-toggle="tab" data-bs-target="#photos-tab-pane" type="button" role="tab" aria-controls="photos-tab-pane" aria-selected="false">
+          <i class="fas fa-images me-2"></i>Fotos
+        </button>
+      </li>
+    </ul>
+
+    <div class="tab-content mt-3" id="myTabContent">
+      <!-- Tabla de contenido -->
+      <div class="tab-pane fade show active" id="table-tab-pane1" role="tabpanel" aria-labelledby="tab-superior">
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>FOTO</th>
+                <th>Nº</th>
+                <th>NOMBRE</th>
+                <th>REFERENCIAS</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- FILAS DE EJEMPLO -->
+              {{TABLA_FILAS}}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Galería -->
+      <div class="tab-pane fade" id="photos-tab-pane" role="tabpanel" aria-labelledby="tab-fotos">
+        <div class="gallery-container">
+          <!-- Tarjeta de imagen -->
+          {{IMAGENES}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var triggerTabList = [].slice.call(document.querySelectorAll('#myTab button'));
+      triggerTabList.forEach(function (triggerEl) {
+        triggerEl.addEventListener('click', function (event) {
+          event.preventDefault();
+          new bootstrap.Tab(triggerEl).show();
+        });
+      });
+    });
+  </script>
+</body>
+</html>
