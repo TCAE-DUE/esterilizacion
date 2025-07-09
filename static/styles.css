@@ -12,7 +12,15 @@
         * {
             box-sizing: border-box;
         }
-
+/* tamaño unificado de botones */
+.btn-quick {
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
