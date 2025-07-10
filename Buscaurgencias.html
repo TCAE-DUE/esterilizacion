@@ -23,38 +23,6 @@
                 <p>Búsqueda rápida y eficiente de equipamiento médico</p>
             </div>
 
-            <!-- Search Section -->
-            <div class="search-section">
-                <div class="row align-items-center">
-                    <div class="col-12 col-md-8">
-                        <div class="input-group">
-                            <span class="input-group-text bg-white border-end-0">
-                                <i class="fas fa-search text-muted"></i>
-                            </span>
-                            <input type="text" id="bodyPart" class="form-control search-input border-start-0" 
-                                   placeholder="Ingrese parte del cuerpo o procedimiento..." 
-                                   autocomplete="off">
-                        </div>
-                    </div>
-                    
-                </div>
-            </div>
-
-            <!-- Stats -->
-            <div class="stats-container">
-                <div class="stats-item">
-                    <div class="stats-number" id="totalProcedures">19</div>
-                    <div class="stats-label">Procedimientos</div>
-                </div>
-                <div class="stats-item">
-                    <div class="stats-number" id="searchCount">0</div>
-                    <div class="stats-label">Búsquedas</div>
-                </div>
-                <div class="stats-item">
-                    <div class="stats-number" id="lastUsed">--</div>
-                    <div class="stats-label">Última búsqueda</div>
-                </div>
-            </div>
 
             <!-- Quick Access Buttons -->
             <div class="quick-buttons">
@@ -183,7 +151,7 @@
             "codo": {
                 cajas: ["CODO (NEWCLIP)","LOQTEC PLACAS OLECRANON","LOQTEC HUMERO MEDIAL Y DORSO LATERAL <span style='color:red;'>HUMERO DISTAL</span>"],
                 pack: "PACK 0",
-                categoria: "Traumatología"
+                categoria: "Traumatologia"
             },
             "muñeca placa": {
                 cajas: ["MANO", "MUÑECA EXPERT (newclip) o APTUS RADIO (CPL) o LOQTEC RADIO DISTAL", "MOTOR SOLICITADO POR QUIRÓFANO"],
@@ -315,77 +283,32 @@ const imagenesPorItem = {
   // ... Puedes seguir agregando según cada item que tengas
 };
 
-        // Variables de estado
-        let searchCount = 0;
-        let lastSearchTime = null;
+        
+ function buscarCajas(bodyPart) {
+    if (!bodyPart || bodyPart.trim() === '') {
+        mostrarError('Por favor, ingrese un término de búsqueda.');
+        return;
+    }
 
-        // Inicialización
-        document.addEventListener('DOMContentLoaded', function() {
-            loadStats();
-            setupEventListeners();
-        });
+    bodyPart = bodyPart.toLowerCase().trim();
 
-        function setupEventListeners() {
-            const input = document.getElementById('bodyPart');
-            
-            // Enter key
-            input.addEventListener('keydown', function(event) {
-                if (event.key === 'Enter') {
-                    event.preventDefault();
-                    buscarCajas();
-                }
-            });
+    const resultDiv = document.getElementById('result');
+    const loadingDiv = document.getElementById('loading');
 
-            // Búsqueda en tiempo real (opcional)
-            input.addEventListener('input', function() {
-                if (this.value.length > 2) {
-                    mostrarSugerencias(this.value);
-                } else {
-                    ocultarSugerencias();
-                }
-            });
-        }
+    loadingDiv.style.display = 'block';
+    resultDiv.innerHTML = '';
+    ocultarSugerencias();
 
-        function buscarCajas() {
-            const bodyPart = document.getElementById('bodyPart').value.toLowerCase().trim();
-            const resultDiv = document.getElementById('result');
-            const loadingDiv = document.getElementById('loading');
-            
-            if (!bodyPart) {
-                mostrarError('Por favor, ingrese un término de búsqueda.');
-                return;
-            }
+    setTimeout(() => {
+        loadingDiv.style.display = 'none';
+        realizarBusqueda(bodyPart);
+        actualizarEstadisticas(bodyPart);
+    }, 500);
+}
 
-            // Mostrar loading
-            loadingDiv.style.display = 'block';
-            resultDiv.innerHTML = '';
-            ocultarSugerencias();
 
-            // Simular delay de búsqueda
-            setTimeout(() => {
-                loadingDiv.style.display = 'none';
-                realizarBusqueda(bodyPart);
-                actualizarEstadisticas();
-            }, 500);
-        }
 
-        // function realizarBusqueda(termino) {
-        //     const resultDiv = document.getElementById('result');
-        //     const resultado = data[termino];
-
-        //     if (resultado) {
-        //         mostrarResultados(resultado, termino);
-        //     } else {
-        //         // Búsqueda parcial
-        //         const coincidencias = buscarCoincidencias(termino);
-        //         if (coincidencias.length > 0) {
-        //             mostrarCoincidenciasParciales(coincidencias);
-        //         } else {
-        //             mostrarSinResultados(termino);
-        //         }
-        //     }
-        // }
-        function realizarBusqueda(termino) {
+       function realizarBusqueda(termino) {
     const resultDiv = document.getElementById('result');
     const resultado = data[termino];
 
@@ -403,122 +326,8 @@ const imagenesPorItem = {
     }
 }
 
-// Función auxiliar para mostrar resultados con imágenes
-function mostrarResultados(resultado, termino) {
-    const resultDiv = document.getElementById('result');
-    
-    let html = `
-        <div class="fade-in">
-            <h4><i class="fas fa-check-circle text-success"></i> Resultados para: <strong>${termino.toUpperCase()}</strong></h4>
-            <div class="badge bg-info mb-3">${resultado.categoria}</div>
-            <div class="result-items">
-    `;
 
-    resultado.cajas.forEach((caja) => {
-        const imagenURL = imagenesPorItem[caja] || null;
-        const cajaHTML = imagenURL 
-            ? `<a href="${imagenURL}" target="_blank" class="text-decoration-none link-imagen" 
-               title="Ver imagen de la caja quirúrgica">${caja}</a>`
-            : caja;
-
-        html += `
-            <div class="result-item">
-                <i class="fas fa-box text-primary me-2"></i>
-                ${cajaHTML.replace(/\n/g, "<br>")}
-            </div>
-        `;
-    });
-
-    if (resultado.pack && resultado.pack !== "PACK ∅") {
-        html += `
-            <div class="pack-info">
-                <i class="fas fa-exclamation-triangle"></i>
-                <strong>${resultado.pack}</strong>
-            </div>
-        `;
-    }
-
-    html += '</div></div>';
-    resultDiv.innerHTML = html;
-    
-    // Añadir estilos para los enlaces de imágenes
-    const style = document.createElement('style');
-    style.textContent = `
-        .link-imagen {
-            color: var(--primary-color);
-            font-weight: 500;
-            transition: all 0.2s ease;
-        }
-        .link-imagen:hover {
-            color: #1d4ed8;
-            text-decoration: underline;
-        }
-    `;
-    document.head.appendChild(style);
-}
-
-// Función de búsqueda de coincidencias (sin cambios)
-function buscarCoincidencias(termino) {
-    const coincidencias = [];
-    for (const [key, value] of Object.entries(data)) {
-        if (key.includes(termino) || termino.split(' ').some(palabra => key.includes(palabra))) {
-            coincidencias.push({ key, value });
-        }
-    }
-    return coincidencias;
-}
-
-// Función para mostrar coincidencias parciales (sin cambios)
-function mostrarCoincidenciasParciales(coincidencias) {
-    const resultDiv = document.getElementById('result');
-    
-    let html = `
-        <div class="fade-in">
-            <h4><i class="fas fa-search text-warning"></i> Coincidencias encontradas (${coincidencias.length})</h4>
-            <p class="text-muted">Se encontraron los siguientes procedimientos similares:</p>
-    `;
-
-    coincidencias.forEach(({key, value}) => {
-        html += `
-            <div class="result-item" style="cursor: pointer;" onclick="copiarTexto('${key}')">
-                <div class="d-flex justify-content-between align-items-center">
-                    <div>
-                        <strong>${key.toUpperCase()}</strong>
-                        <div class="badge bg-secondary ms-2">${value.categoria}</div>
-                    </div>
-                    <i class="fas fa-chevron-right text-muted"></i>
-                </div>
-            </div>
-        `;
-    });
-
-    html += '</div>';
-    resultDiv.innerHTML = html;
-}
-
-// Función para mostrar cuando no hay resultados (sin cambios)
-function mostrarSinResultados(termino) {
-    const resultDiv = document.getElementById('result');
-    resultDiv.innerHTML = `
-        <div class="no-results fade-in">
-            <i class="fas fa-search-minus"></i>
-            <h4>No se encontraron resultados</h4>
-            <p>No se encontraron cajas quirúrgicas para "<strong>${termino}</strong>".</p>
-            <p class="text-muted">Intente con términos como: muñeca, tobillo, pelvis, cadera, etc.</p>
-        </div>
-    `;
-    mostrarSugerenciasCompletas();
-}
-
-        function buscarCoincidencias(termino) {
-            const coincidencias = [];
-            for (const [key, value] of Object.entries(data)) {
-                if (key.includes(termino) || termino.split(' ').some(palabra => key.includes(palabra))) {
-                    coincidencias.push({ key, value });
-                }
-            }
-            return coincidencias;
-        }
+       
 
        function mostrarResultados(resultado, termino) {
     const resultDiv = document.getElementById('result');
@@ -584,45 +393,7 @@ function mostrarSinResultados(termino) {
     document.head.appendChild(style);
 }
 
-        function mostrarCoincidenciasParciales(coincidencias) {
-            const resultDiv = document.getElementById('result');
-            
-            let html = `
-                <div class="fade-in">
-                    <h4><i class="fas fa-search text-warning"></i> Coincidencias encontradas (${coincidencias.length})</h4>
-                    <p class="text-muted">Se encontraron los siguientes procedimientos similares:</p>
-            `;
 
-            coincidencias.forEach(({key, value}) => {
-                html += `
-                    <div class="result-item" style="cursor: pointer;" onclick="copiarTexto('${key}')">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div>
-                                <strong>${key.toUpperCase()}</strong>
-                                <div class="badge bg-secondary ms-2">${value.categoria}</div>
-                            </div>
-                            <i class="fas fa-chevron-right text-muted"></i>
-                        </div>
-                    </div>
-                `;
-            });
-
-            html += '</div>';
-            resultDiv.innerHTML = html;
-        }
-
-        function mostrarSinResultados(termino) {
-            const resultDiv = document.getElementById('result');
-            resultDiv.innerHTML = `
-                <div class="no-results fade-in">
-                    <i class="fas fa-search-minus"></i>
-                    <h4>No se encontraron resultados</h4>
-                    <p>No se encontraron cajas quirúrgicas para "<strong>${termino}</strong>".</p>
-                    <p class="text-muted">Intente con términos como: muñeca, tobillo, pelvis, cadera, etc.</p>
-                </div>
-            `;
-            mostrarSugerenciasCompletas();
-        }
 
         function mostrarError(mensaje) {
             const resultDiv = document.getElementById('result');
@@ -634,22 +405,7 @@ function mostrarSinResultados(termino) {
             `;
         }
 
-        function mostrarSugerencias(termino) {
-            const suggestions = Object.keys(data).filter(key => 
-                key.toLowerCase().includes(termino.toLowerCase())
-            );
-
-            if (suggestions.length > 0) {
-                const suggestionsDiv = document.getElementById('suggestions');
-                const tagsDiv = document.getElementById('suggestionTags');
-                
-                tagsDiv.innerHTML = suggestions.slice(0, 5).map(suggestion => 
-                    `<span class="suggestion-tag" onclick="copiarTexto('${suggestion}')">${suggestion}</span>`
-                ).join('');
-                
-                suggestionsDiv.style.display = 'block';
-            }
-        }
+       
 
         function mostrarSugerenciasCompletas() {
             const suggestionsDiv = document.getElementById('suggestions');
@@ -668,48 +424,9 @@ function mostrarSinResultados(termino) {
             document.getElementById('suggestions').style.display = 'none';
         }
 
-        function copiarTexto(texto) {
-            const input = document.getElementById('bodyPart');
-            input.value = texto;
-            input.focus();
-            
-            // Auto-buscar después de copiar
-            setTimeout(() => {
-                buscarCajas();
-            }, 300);
-        }
-
-        function limpiarBusqueda() {
-            document.getElementById('bodyPart').value = '';
-            document.getElementById('result').innerHTML = '';
-            ocultarSugerencias();
-            document.getElementById('bodyPart').focus();
-        }
-
-        function actualizarEstadisticas() {
-            searchCount++;
-            lastSearchTime = new Date().toLocaleTimeString();
-            
-            document.getElementById('searchCount').textContent = searchCount;
-            document.getElementById('lastUsed').textContent = lastSearchTime;
-            
-            // Guardar en memoria (no localStorage por restricciones)
-            window.appStats = {
-                searchCount,
-                lastSearchTime
-            };
-        }
-
-        function loadStats() {
-            // Cargar desde memoria si existe
-            if (window.appStats) {
-                searchCount = window.appStats.searchCount || 0;
-                lastSearchTime = window.appStats.lastSearchTime || '--';
-                
-                document.getElementById('searchCount').textContent = searchCount;
-                document.getElementById('lastUsed').textContent = lastSearchTime;
-            }
-        }
+       function copiarTexto(texto) {
+    buscarCajas(texto);
+}
     </script>
 </body>
 </html>
